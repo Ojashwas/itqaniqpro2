@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ITQAN IQ">
+  <title>ITQAN IQ</title>
+  <defs><clipPath id="itqan-tile"><rect width="64" height="64" rx="16"/></clipPath></defs>
+  <g clip-path="url(#itqan-tile)">
+    <rect width="64" height="64" fill="#00732f"/>
+    <rect width="9" height="64" fill="#ce1126"/>
+  </g>
+  <g fill="#fff">
+    <rect x="15" y="38" width="9" height="11" rx="2.5"/>
+    <rect x="28" y="31" width="9" height="18" rx="2.5"/>
+    <rect x="41" y="24" width="9" height="25" rx="2.5"/>
+  </g>
+  <path d="M14 42 44.1 18.2" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M52.5 11.5 46.1 22.7 40.1 15.2 Z" fill="#fff"/>
+</svg>
