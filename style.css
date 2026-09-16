@@ -8,8 +8,9 @@
   --muted:#586761;
   --line:#dfe5da;
   --line-soft:#eceee7;
-  --green:#1c6a4c;
-  --green-soft:#e6efe7;
+  --green:#0d7758;
+  --green-soft:#e8f4ef;
+  --green-deep:#0d3a30;
   --amber:#8a6210;
   --amber-soft:#fbf2e0;
   --red:#a63c34;
@@ -19,10 +20,11 @@
   --gold:#8a6d2a;
   /* Brand-only tokens. RAG status, charts and the rest of the interface keep their own
      accessible palette so flag red is never mistaken for an Off track signal. */
-  /* ITQAN IQ brand tokens. RAG status, charts and the rest of the interface keep their own
-     accessible palette so brand teal is never mistaken for a performance signal. */
-  --brand-ink:#0f2a3a;
-  --brand-teal:#17a398;
+  /* ITQAN IQ brand tokens, drawn from the workspace green so the lockup sits in the same
+     family as the executive overview. RAG status and charts keep their own accessible
+     palette so brand green is never mistaken for an On track signal. */
+  --brand-ink:#0d3a30;
+  --brand-accent:#0d7758;
   --brand-face:'Montserrat','Segoe UI',Tahoma,Arial,sans-serif;
   --sans:'DM Sans','Segoe UI',Tahoma,Arial,sans-serif;
   --display:'Manrope','Segoe UI',Tahoma,Arial,sans-serif;
@@ -67,7 +69,7 @@ button.primary:hover{background:#12241e}
 button.ghost{border:0;background:transparent;padding:8px 10px;color:var(--green);font-weight:600}
 button.ghost:hover{background:var(--green-soft)}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
-[tabindex="0"]:focus-visible{outline:2px solid #1c6a4c;outline-offset:3px}
+[tabindex="0"]:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 input,select,textarea{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff}
 input:disabled{background:#f3f5f1;color:var(--muted)}
 textarea{min-height:88px;resize:vertical}
@@ -80,7 +82,7 @@ svg{vertical-align:middle}
 .login-card{width:min(100%,430px);align-self:center;justify-self:center;padding:40px 28px}
 .login-brand{display:flex;align-items:center;gap:13px;margin-bottom:68px}
 .login-brand strong{font-family:var(--brand-face);font-size:21px;font-weight:500;letter-spacing:.2em;color:var(--brand-ink)}
-.login-brand strong span{color:var(--brand-teal);font-weight:600}
+.login-brand strong span{color:var(--brand-accent);font-weight:600}
 .login-brand small{display:block;font-family:var(--brand-face);font-size:8.5px;font-weight:400;letter-spacing:.22em;color:var(--muted);margin-top:5px}
 .login-copy h1{font-size:34px;margin:9px 0 8px}
 .login-copy p{color:var(--muted);margin-bottom:28px}
@@ -107,7 +109,7 @@ svg{vertical-align:middle}
 .brand{display:flex;align-items:center;gap:12px;padding:0 8px}
 .brand-mark{flex:none;border-radius:13px;display:block}
 .brand strong{font-family:var(--brand-face);font-size:18px;font-weight:500;letter-spacing:.2em;color:var(--brand-ink);white-space:nowrap}
-.brand strong span{color:var(--brand-teal);font-weight:600}
+.brand strong span{color:var(--brand-accent);font-weight:600}
 .brand small{display:block;font-family:var(--brand-face);font-size:7px;font-weight:400;letter-spacing:.12em;color:var(--muted);margin-top:5px;white-space:nowrap}
 .org{
   margin:22px 8px 16px;border-top:1px solid var(--line);padding-top:18px;
@@ -123,7 +125,7 @@ svg{vertical-align:middle}
   font-size:14.5px;font-weight:500;border-radius:8px;line-height:1.3;
 }
 .nav-item:hover{background:#f1f4ef;border-color:transparent}
-.nav-item.active{background:var(--green-soft);color:#14503a;font-weight:700}
+.nav-item.active{background:var(--green-soft);color:#0b5c44;font-weight:700}
 .nav-icon{font-size:17px;width:22px;text-align:center;flex:none}
 .nav-item .count{
   margin-inline-start:auto;background:#f2e7d3;color:#7c6021;border-radius:6px;
@@ -157,7 +159,7 @@ svg{vertical-align:middle}
   display:flex;align-items:center;gap:8px;border:1px solid var(--line);
   border-radius:9px;padding:6px 12px;background:#fff;color:var(--muted);font-size:16px;
 }
-.search-box:focus-within{border-color:#1c6a4c}
+.search-box:focus-within{border-color:var(--green)}
 .search{border:0;background:none;width:200px;font-size:14px;padding:2px 0}
 .search:focus-visible{outline:none}
 .demo{
@@ -183,7 +185,7 @@ svg{vertical-align:middle}
 
 /* ---------- hero ---------- */
 .hero{
-  background:#173f34;border-radius:var(--radius);color:#fff;padding:28px 32px;
+  background:var(--green-deep);border-radius:var(--radius);color:#fff;padding:28px 32px;
   display:flex;align-items:center;justify-content:space-between;gap:32px;
   position:relative;overflow:hidden;margin-bottom:22px;
 }
@@ -205,7 +207,7 @@ svg{vertical-align:middle}
   display:grid;place-items:center;transform:rotate(-45deg);flex:none;
 }
 .ring-inner{
-  transform:rotate(45deg);width:106px;height:106px;border-radius:50%;background:#173f34;
+  transform:rotate(45deg);width:106px;height:106px;border-radius:50%;background:var(--green-deep);
   display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
 }
 .ring strong{font-family:var(--display);font-size:32px;font-weight:800;color:#fff;line-height:1}
@@ -220,7 +222,7 @@ svg{vertical-align:middle}
 .metric-top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--muted);font-weight:500}
 .metric-icon{
   width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:8px;
-  background:var(--green-soft);color:#3f6b45;font-size:15px;
+  background:var(--green-soft);color:#2a7a5e;font-size:15px;
 }
 .metric-icon.warn{background:var(--amber-soft);color:var(--amber)}
 .metric strong{
@@ -238,7 +240,7 @@ svg{vertical-align:middle}
 .panel-head{padding:20px 22px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
 .panel-head p{font-size:13.5px;color:var(--muted);margin:6px 0 0;max-width:60ch}
 .legend{display:flex;gap:18px;font-size:13px;color:var(--muted);padding:0 22px 10px}
-.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3f7357;margin-inline-end:7px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#1a8f68;margin-inline-end:7px}
 .legend i.gold{background:#a8894a}
 
 /* ---------- goal rows ---------- */
@@ -302,7 +304,7 @@ tr.clickable:hover{background:#f8faf7}
 /* ---------- pills ---------- */
 .pill{
   font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;
-  border-radius:7px;background:var(--green-soft);color:#1c5b3f;padding:5px 10px;white-space:nowrap;
+  border-radius:7px;background:var(--green-soft);color:#0c6349;padding:5px 10px;white-space:nowrap;
 }
 .pill:before{content:'';height:7px;width:7px;border-radius:50%;background:currentColor;flex:none}
 .pill.amber{color:var(--amber);background:var(--amber-soft)}
