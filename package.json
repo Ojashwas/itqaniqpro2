@@ -1,1 +1,11 @@
-{"name":"itqan-iq-prototype","version":"1.0.0","private":true,"scripts":{"dev":"node server.cjs","start":"node server.cjs","check":"node --check app.js && node --check data.js","test":"node --test test/ && node smoke-test.cjs"},"devDependencies":{"jsdom":"^30.0.1"}}
+{
+  "name": "itqan-iq-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.cjs",
+    "start": "node server.cjs",
+    "check": "node --check app.js && node --check data.js",
+    "test": "node --test test/ && node smoke-test.cjs"
+  }
+}

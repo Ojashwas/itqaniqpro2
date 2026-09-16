@@ -58,7 +58,7 @@ const health=goal=>avg(goalItems(goal));
 const departments=()=>[...new Set(kpis.map(k=>k.dept))].sort();
 const raw=id=>kpis.find(k=>k.id===id);
 const pct=v=>finite(v)?`${Math.round(v)}%`:'—';
-const width=v=>finite(v)?Math.max(0,Math.min(100,v)):0;
+const width=v=>finite(v)?Math.round(Math.max(0,Math.min(100,v))*10)/10:0;
 const trimNum=v=>finite(v)?String(Number(v.toFixed(2))):'—';
 const unitSuffix={'%':'%',days:' days',min:' min',count:'',rate:' per 100k'};
 const fmt=(v,unit)=>finite(v)?`${trimNum(v)}${unitSuffix[unit]===undefined?` ${unit}`:unitSuffix[unit]}`:'—';
