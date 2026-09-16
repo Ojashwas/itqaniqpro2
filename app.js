@@ -19,7 +19,11 @@ const seedActions=[{id:1,title:'Accelerate service backlog clearance',kpi:'KPI-S
 const seedAudit=[{event:'August actuals validated',actor:'Data Steward',time:'07 Sep 2026, 09:42'},{event:'Service completion breach escalated to executive sponsor',actor:'Scoring engine (simulated)',time:'07 Sep 2026, 09:40'}];
 
 const STORE='itqan-demo-v1';
-let saved=null;try{saved=JSON.parse(localStorage.getItem(STORE))}catch{}
+/* Stored workspaces are stamped with the seed generation they were created from, so a
+   payload saved by a differently branded build is discarded rather than restored into
+   the ITQAN IQ shell with foreign goals, KPIs and departments. */
+const SEED='itqan-iq';
+let saved=null;try{const restored=JSON.parse(localStorage.getItem(STORE));if(restored&&restored.seed===SEED)saved=restored}catch{}
 let kpis=Data.normalise(saved&&Array.isArray(saved.kpis)?saved.kpis:initialKpis);
 let actions=saved&&Array.isArray(saved.actions)?saved.actions:seedActions.map(a=>({...a}));
 let audit=saved&&Array.isArray(saved.audit)?saved.audit:seedAudit.map(a=>({...a}));
@@ -64,7 +68,7 @@ const deltaText=d=>!finite(d)?'—':`${d>0?'↗ +':d<0?'↘ ':'→ '}${Math.abs(
 
 function persist(event){
   if(event)audit.unshift({event,actor:'A. Al Mansoori · Demo PMO',time:new Date().toLocaleString('en-GB')});
-  localStorage.setItem(STORE,JSON.stringify({kpis,actions,audit}));
+  localStorage.setItem(STORE,JSON.stringify({seed:SEED,kpis,actions,audit}));
 }
 function toast(msg){$('#toast').textContent=msg;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',3500)}
 
