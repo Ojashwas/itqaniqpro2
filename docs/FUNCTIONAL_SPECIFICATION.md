@@ -2,10 +2,10 @@
 
 | Document attribute | Value |
 | --- | --- |
-| Version | 1.0 |
-| Prepared | 17 September 2026 |
+| Version | 1.1 |
+| Last reviewed | 17 September 2026 |
 | Product | ITQAN IQ |
-| Baseline | Current local application after project restructuring and administration enhancements |
+| Baseline | UAE login, separate strategic hierarchy, shared recovery creation with immediate approval submission, scoped workspace search and ten-section Administration |
 | Status | Draft for business review; describes the implemented prototype and separately identifies production requirements |
 | Audience | Business owners, Strategy Team, department representatives, product owners, designers, developers and testers |
 | Source of truth | Current application source and existing automated tests, supported by project documentation |
@@ -61,9 +61,9 @@ Requirements without another status describe **implemented prototype behavior**.
 
 ### 1.4 Current scope
 
-The prototype contains eleven main views, ten administration sections, four fixed role types, a shared approval workflow, browser-local persistence, CSV export, browser printing, English/Arabic navigation and rule-based guidance. The initial workspace has four goals/objectives, four departments, eight KPIs and three seeded recovery plans. Reporting examples cover April–September 2026; September is the current measurement period.
+The prototype contains eleven main views, ten administration sections, four fixed role types, a shared approval workflow, browser-local persistence, CSV export, browser printing, English/Arabic navigation and rule-based guidance. The initial workspace has four strategic goals, four child objectives, four departments, eight KPIs and three seeded recovery plans. Reporting examples cover April–September 2026; September is the current measurement period.
 
-New departments, objectives, accounts, KPIs and plans can be added through the implemented forms. The measurement calendar is fixed in the prototype; adding a new reporting year or changing the measurement cadence is not an implemented administrator capability.
+New strategic goals, objectives, departments, accounts, source catalogue entries, KPI types, KPIs and plans can be added through the implemented forms. The measurement calendar is fixed in the prototype; adding a new reporting year or changing measurement cadence is not an implemented administrator capability. Plan deadlines and monitoring dates use the real calendar independently of the fixed measurement period.
 
 ### 1.5 Exclusions from implemented scope
 
@@ -74,7 +74,7 @@ Live SSO, server-enforced permissions, a shared database, real source-system ing
 | Term | Meaning |
 | --- | --- |
 | Strategic goal | High-level strategic outcome with its own identity, owner and optional description; may contain multiple objectives. |
-| Objective | Business purpose to which a KPI is assigned. |
+| Objective | Child of one strategic goal, with an owner and responsible department; supports KPIs and direct action plans. |
 | KPI | Defined measure with a department, owner, source, unit, direction and approved thresholds. |
 | Target | The approved threshold at which an individual KPI becomes Green. |
 | Amber boundary | Threshold separating At risk from Off track for an individual KPI. |
@@ -126,6 +126,7 @@ flowchart LR
 | Capability | Department Contributor | Department Approver | Strategy Team | Administrator |
 | --- | --- | --- | --- | --- |
 | View departmental KPI data and plans | Own department | Own department | All departments | All departments |
+| Create/edit strategic goals and objectives | No | No | Yes, from Strategy & objectives | Yes, from Strategy & objectives or Administration |
 | Register KPI and save draft | Own department | Own department | Any department | No |
 | Propose target/definition changes | Own department | Own department | Any department | No |
 | Create or amend plans | Own department | Own department | Any department | No |
@@ -133,7 +134,7 @@ flowchart LR
 | Submit closure/reopening | Own department | Own department | Any department | No |
 | Department-stage approval | No | Own department; not own request | No | No |
 | Strategy-stage approval | No | No | All departments; not own request | No |
-| Configure application/accounts | No | No | No | Yes |
+| Configure application policy, lists and accounts | No | No | No | Yes |
 | View/export published performance | Own department | Own department | All permitted departments | All permitted departments |
 | View audit and requests | Scoped records | Scoped records | All records | All records |
 
@@ -163,6 +164,8 @@ The login screen presents an always-visible “Choose your role” panel alongsi
 **AUTH-04:** The layout provides a desktop product-introduction panel and a compact mobile sign-in form, with Arabic/RTL support. Keep the provider options and demo access visibly distinct so entering a demo role is not presented as successful identity verification.
 
 **AUTH-05:** Role selection must remain visible without expanding another control. Show all four supported roles with scope descriptions. Filter active demo accounts by selected role and, where applicable, department. Disable entry and explain when no matching account exists. Reject an account that does not match the selection at submission. Preserve role/department/account selections when switching login language. Preview selections must not modify the session until valid demo entry.
+
+**AUTH-06:** Present the ITQAN IQ punch line **Intelligence in Performance.** as a prominent headline above role selection, with **Clarity. Confidence. Impact.** as supporting copy. Use the UAE flag's red hoist and green/white/black bands, flag-color accents and green/white controls. Preserve the flag's physical orientation in Arabic/RTL. Keep role selection, credential sign-in and UAE PASS available at desktop and mobile widths. Brand styling does not imply a live identity connection.
 
 **Production requirement:** Replace profile selection with verified identity and derive roles/departments from trusted claims or server-managed assignments. All authorization must be repeated by the backend; filtering browser data is not departmental data isolation.
 
@@ -209,7 +212,8 @@ The login screen presents an always-visible “Choose your role” panel alongsi
 | Create action | Objective or KPI details → Create action plan → task, owner, deadline, outcome → Save draft → Submit |
 | Create recovery | Current underperforming KPI → Create recovery plan → review gap, cause and steps → Create & submit for approval → Department review → Strategy review → Manage plan |
 | Decide request | Approvals → My review → Review request → decision note → Approve / Return for changes |
-| Monitor recovery | Plans & recovery → Manage action → Monitoring & effectiveness → Record review |
+| Monitor recovery | Plans & recovery → Manage plan → Start recovery after approval → Monitoring & effectiveness → Record review |
+| Save unfinished recovery | Same recovery form → Save draft → Manage plan → complete detail/milestones → Submit plan for approval |
 | Close plan | Plan detail → verify evidence/criteria → request closure → Department and Strategy decisions |
 | Configure app | Sign in as Workspace administrator → Administration → relevant section → Save |
 
@@ -229,13 +233,24 @@ The login screen presents an always-visible “Choose your role” panel alongsi
 
 **STR-01:** Display separate strategic goal cards with accountable owner, aggregate achievement and child objectives. Strategy Team and Administrator can create/edit goals and create/edit objectives under a selected goal. Each objective has its own owner and responsible department. Goal creation offers Create objective as the next step.
 
-**STR-05:** An objective can register a KPI with the objective preselected, or create a direct action plan. Preserve existing KPI/plan references through migration from legacy paired records. Allow multiple objectives under one goal; an empty goal is valid during setup.
-
 **STR-02:** An objective drawer displays its KPI count, active linked plan count and current underperforming KPIs without an active recovery plan.
 
 **STR-03:** Objective measures display actual/target, status and equal KPI weight. Plan links remain navigable from the relevant measure.
 
 **STR-04:** Goals without measurable published KPIs display No data rather than zero achievement. Department views show relevant connected data; adding an objective does not create artificial KPI results.
+
+**STR-05:** An objective can register a KPI with the objective preselected, or create a direct action plan. Preserve existing KPI/plan references through migration from legacy paired records. Allow multiple objectives under one goal; an empty goal is valid during setup.
+
+**STR-06:** Reject duplicate strategic goal names case-insensitively and duplicate objective names within the same parent. Hierarchy changes save directly with audit history for Strategy Team or Administrator; they do not enter the KPI/plan approval flow. Department users see objectives assigned to their department or connected to their permitted KPIs/plans. Moving an objective to another parent preserves its KPI/plan references and changes its strategic roll-up.
+
+| Hierarchy field | Required | Current form constraint |
+| --- | --- | --- |
+| Strategic goal name and owner | Yes | Up to 240 characters each |
+| Arabic goal name and description | No | Up to 240 characters each |
+| Objective parent | Yes | Existing strategic goal |
+| Objective name | Yes | Up to 160 characters |
+| Objective owner | Yes | Up to 100 characters |
+| Responsible department | Yes | Existing department directory entry |
 
 ### 5.3 KPI registry and details
 
@@ -259,6 +274,8 @@ Detailed registration and target rules appear in Section 6.
 
 **DAT-04:** Provide read-only KPI links and incoming-results tables. Do not provide a Record actual or Edit actual form.
 
+**DAT-05:** KPI details and source search results can open Data flows with a source filter. The filter applies to both source cards and incoming rows; Show all sources clears it. If a source metric key is absent, display the KPI ID as the mapping fallback. A configured source with no published scoped KPI has no incoming-results card yet.
+
 ### 5.5 AI insights / workspace guide
 
 **AIG-01:** Present a simple question/search field, prompt suggestions and shortcuts for objectives, targets, incoming actuals and recovery.
@@ -271,9 +288,11 @@ Detailed registration and target rules appear in Section 6.
 
 **AIG-05:** Identify the guide as based on local rules and workspace data. It cannot approve work, modify records, send messages, forecast through a trained model or access external information.
 
+**AIG-06:** Show at most the first 40 matching records with guidance to refine larger result sets. Apply permission and department filters before returning results. A source result opens its filtered Data flows view; an approval result opens the request. Search/help cannot grant access to another department.
+
 ### 5.6 Impact & escalation
 
-**IMP-01:** Show non-Green KPIs with breach classification, proposed escalation role, actual/target, achievement, trend and parent-goal context.
+**IMP-01:** Show non-Green KPIs with breach classification, proposed escalation role, actual/target, achievement, trend and linked objective/strategic-goal context. The aggregate score used by the escalation calculation is the linked objective's achievement, as specified in Section 10.4.
 
 **IMP-02:** Show Needs attention by default, with an All KPIs option. Display linked action/recovery plans, recent delivery/monitoring updates and approval requests. Actions are available for healthy published KPIs too; recovery requires current Amber/Red results. Open KPI details for review. An escalation classification is an advisory route, not evidence that a message was sent or a request assigned.
 
@@ -291,6 +310,8 @@ Detailed registration and target rules appear in Section 6.
 
 **PLN-05:** The “Recovery verified” board metric/filter reflects Green-period eligibility for an In progress plan. It is not a statement that every closure prerequisite or approval has been completed.
 
+**PLN-11:** Show separate All, Action plans and Recovery plans tabs and a Manage plan entry on cards. After new recovery creation, clear stale linked/search/status/owner/priority filters, select the recovery type and relevant department, and open the new plan so it is immediately discoverable.
+
 ### 5.8 Reports, Approvals, Administration and Audit
 
 Reports provide an executive print view, scoped published-KPI CSV and department comparison. Approvals provide inbox filters, submitted/current data, stage deadlines and decision history. Administration provides ten configuration sections. Audit provides scoped activity rows. Their detailed requirements appear in Sections 7, 11 and 13.
@@ -305,13 +326,14 @@ Reports provide an executive print view, scoped published-KPI CSV and department
 | KPI name | Yes | Trimmed text; registration UI limit 140 characters |
 | Accountable owner | Yes | Trimmed text; 140 characters; descriptive ownership |
 | Source application | Yes | Trimmed text; 140 characters; catalogue attribution, not a connector selection |
+| Source metric / field key | No | Up to 140 characters during registration; intended source mapping; KPI ID is the display fallback |
 | Definition | Yes | Trimmed text; 140 characters in registration |
 | Measurement formula | Yes | Trimmed text; 140 characters; descriptive, not executable code |
-| Linked objective | Yes | Existing goal/objective reference |
+| Linked objective | Yes | Existing objective reference; parent strategic goal is inherited |
 | Department | Yes | Account's department for departmental roles; directory selection for Strategy |
-| Type | Yes | Leading or Lagging |
+| Type | Yes | Enabled Administration KPI type; Leading/Lagging initially, custom categories supported |
 | Direction | Yes | Higher is better or Lower is better |
-| Unit | Yes | `%`, `days`, `min`, `count` or `rate` |
+| Unit | Yes | Enabled supported unit: `%`, `days`, `min`, `count` or `rate` |
 | Target | Yes | Finite, positive number satisfying unit rules |
 | Amber boundary | Yes | Finite, non-negative number satisfying unit/direction rules |
 | Frequency | Fixed | Monthly in the current prototype |
@@ -336,6 +358,8 @@ Reports provide an executive print view, scoped published-KPI CSV and department
 **KPI-07:** The amendment form does not change department, source application, unit, direction or measurement history. Those capabilities would require a separately designed change policy.
 
 **KPI-08:** Approval increments the record/definition version. Rejected proposals do not overwrite the live definition.
+
+The amendment UI allows up to 500 characters for each exposed text field and requires a change reason up to 2,000 characters. Source metric key remains optional. Retiring a configured KPI type does not invalidate a definition awaiting approval; the retained type catalogue supports existing records.
 
 ### 6.4 Target changes
 
@@ -367,7 +391,7 @@ Reports provide an executive print view, scoped published-KPI CSV and department
 | Plan closure | Revalidate closure and record Closed state/evidence |
 | Plan reopening | Reopen a Closed plan with reason and invalidate prior effectiveness |
 
-Administrative configuration and account assignments are saved directly by administrators and audited; they do not use the business approval workflow.
+Administrative configuration and account assignments are saved directly by administrators and audited; they do not use the business approval workflow. Strategic hierarchy changes are also direct audited saves for Strategy Team or Administrator.
 
 ### 7.2 Approval states
 
@@ -416,6 +440,7 @@ When no other eligible department approver exists, show an explanation that an a
 | Link | One objective with a responsible department, or one published KPI | One published KPI with a current At risk or Off track result |
 | Start from | Objective detail, KPI detail, Plans board or Create menu | Plans board/Create menu eligible-KPI chooser, or current underperforming KPI in Impact/KPI details; all use the same form |
 | Required preparation | Task, owner, deadline and expected outcome | Cause, correction, success criteria, review schedule and milestones |
+| Initial submission | Save draft, then submit from plan details | Primary Create & submit for approval immediately starts review; Save draft is an explicit alternative |
 | Monitoring | Progress notes; optional delivery checklist | Scheduled effectiveness reviews against source actuals |
 | Completion | Delivery evidence; any checklist items must be completed with evidence | Completed milestones, current Effective review and configured consecutive Green results |
 | Approvals | Department then Strategy for plan, amendments, completion and reopening | Same approval sequence, with recovery-specific validation |
@@ -433,7 +458,7 @@ When no other eligible department approver exists, show an explanation that an a
 | Expected outcome / completion criteria | Required trimmed text, up to 240 characters |
 | Delivery notes | Optional, up to 2,000 characters |
 
-Saving opens a simple action detail with outcome, delivery notes, optional checklist, progress updates and approval controls. It does not show a corrective-plan form or recovery monitoring form. An objective action does not require a KPI or contribute a fabricated KPI score.
+Saving creates an Open draft and opens a simple action detail with outcome, delivery notes, optional checklist, progress updates and approval controls. Submit the action separately to start Department review. It does not show a corrective-plan form or recovery monitoring form. An objective action does not require a KPI or contribute a fabricated KPI score.
 
 ### 8.3 Recovery creation and corrective detail
 
@@ -445,6 +470,10 @@ Saving opens a simple action detail with outcome, delivery notes, optional check
 
 **REC-04:** The primary action is Create & submit for approval. Validate initial recovery completeness before creating the record, then create exactly one Plan approval request in Department review. Strategy review follows the department decision. Save draft is an explicit secondary option without an approval request. Manage plan shows the request stage and locks changes/execution while pending; after final approval it supports progress, evidence and monitoring. Structural amendments require a new approval cycle. No extra initial submission is required from Manage plan.
 
+**REC-05:** Plans & recovery and the global Create menu first offer a scoped eligible-KPI chooser with search, read-only gaps and links to existing open recovery plans. Impact and KPI details already supply the KPI. Every path uses the same recovery form, defaults, validation and approval sequence. The chooser honors department and linked-record filters and explains when no eligible KPI exists. Multiple recoveries for a KPI are permitted.
+
+**REC-06:** Invalid primary submission creates neither a plan nor a request. Save draft permits unfinished cause, corrective steps or next-review detail but still requires valid basic plan fields and an eligible KPI. Drafts are completed and submitted later from Manage plan. Initial steps populate a milestone title up to 160 characters while the complete corrective text remains in plan detail; its owner/deadline come from the plan. Creation also initializes success criteria, review owner and configured cadence.
+
 | Detail | Required before submission/start |
 | --- | --- |
 | Title, accountable owner, due date, expected effect | Yes; same basic field limits as actions |
@@ -453,7 +482,7 @@ Saving opens a simple action detail with outcome, delivery notes, optional check
 | Prevention | Optional; up to 2,000 characters |
 | Measurable success criteria | Yes; up to 2,000 characters |
 | Review owner | Yes; up to 100 characters |
-| Review frequency | Weekly, Fortnightly or Monthly |
+| Review frequency | Enabled Weekly, Fortnightly or Monthly value; existing saved values retained |
 | Next review date | Valid date; due/past dates are shown as review due |
 | Delivery milestones | At least one with title, owner and valid due date |
 
@@ -469,7 +498,7 @@ Saving opens a simple action detail with outcome, delivery notes, optional check
 
 ### 8.5 Approval and execution
 
-**PLN-06:** Validate by plan type. Action submission needs its basic task details. Recovery submission additionally needs complete corrective detail, valid monitoring schedule and assigned milestones. Both save as Open/Draft before approval; seeded records without approval metadata remain drafts.
+**PLN-06:** Validate by plan type. Action submission needs its basic task details. Recovery submission additionally needs complete corrective detail, valid monitoring schedule and assigned milestones. Both begin with Open execution status. Action creation and explicit recovery Save draft create no request; primary recovery creation starts Department review immediately. The pending request's stage is displayed even though the underlying plan is not yet approved. Seeded records without approval metadata remain drafts.
 
 **PLN-07:** Pending approval locks changes. Final approval leaves the plan Open until Start is selected.
 
@@ -520,7 +549,7 @@ Changing the relevant plan revision, imported result, approved target or configu
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Open: Create draft plan
+    [*] --> Open: Save draft or create and submit recovery
     Open --> Open: Complete plan and obtain approval
     Open --> InProgress: Start approved complete plan
     InProgress --> InProgress: Delivery and monitoring
@@ -583,7 +612,7 @@ Missing or invalid observations produce No data. Zero is a legitimate actual, su
 | CAL-09 | Aggregate boundaries do not replace an individual KPI's target/Amber boundaries. |
 | CAL-10 | Department comparison is a mean of measured KPIs in each department; its overall total uses equal goal weights. The two weighting levels must be described accurately. |
 
-**Example:** Goal A has three KPIs averaging 90%; Goal B has one KPI scoring 70%. Overall achievement is `(90 + 70) / 2 = 80%`, not the four-KPI average of 85%.
+**Example:** Goal A has one objective with three measured KPIs averaging 90%; Goal B has one objective with one KPI scoring 70%. Overall achievement is `(90 + 70) / 2 = 80%`, not the four-KPI average of 85%. If Goal A gains a second measured objective scoring 50%, its goal score becomes `(90 + 50) / 2 = 70%`; it still has one equal share of overall achievement.
 
 ### 10.3 Time, trends and illustrative forecasts
 
@@ -599,11 +628,11 @@ Evaluate in this order:
 | --- | --- | --- |
 | No valid observation | Data gap | KPI owner |
 | Green KPI | No breach | None |
-| Current and previous KPI both Red, or non-Green KPI's measured parent goal below aggregate Green boundary | Critical | Executive sponsor |
+| Current and previous KPI both Red, or non-Green KPI's measured linked objective below aggregate Green boundary | Critical | Executive sponsor |
 | Remaining Red KPI | Material | Objective owner |
 | Remaining Amber KPI | Minor | KPI owner |
 
-The previous-period Red check uses previous-period thresholds. Routes are descriptive; the app does not send external escalations or automatically create recovery plans.
+The previous-period Red check uses previous-period thresholds. The UI passes the linked objective's mean KPI achievement to the breach engine; it does not pass the separate strategic-goal score. Routes are descriptive; the app does not send external escalations or automatically create recovery plans.
 
 ### 10.5 Recovery rule
 
@@ -648,7 +677,7 @@ Role types are fixed; arbitrary custom role definitions, passwords, invitation e
 
 ### 11.6 Performance rules
 
-Allow aggregate Green and Amber boundaries satisfying `0 <= Amber < Green <= 100`. Defaults are 95 and 85. Apply them to aggregate labels and parent-goal escalation, including historical classification. Preserve actuals, KPI-specific thresholds and numeric achievement formulas. Equal KPI/goal weighting remains fixed.
+Allow aggregate Green and Amber boundaries satisfying `0 <= Amber < Green <= 100`. Defaults are 95 and 85. Apply them to aggregate labels and objective-based escalation, including historical classification. Preserve actuals, KPI-specific thresholds and numeric achievement formulas. Equal KPI/objective/strategic-goal weighting remains fixed within each level.
 
 ### 11.7 Approval policy
 
@@ -661,7 +690,7 @@ The two stages, required decision notes and prohibition on self-approval are fix
 | Setting | Default | Allowed values and application |
 | --- | --- | --- |
 | Consecutive Green periods | 2 | Whole number 2–6; affects current recovery eligibility and monitoring snapshots |
-| Monitoring frequency | Weekly | Weekly, Fortnightly, Monthly; default for new plans |
+| Monitoring frequency | Weekly | Enabled Weekly, Fortnightly, Monthly; default for new recovery plans |
 | Priority | Medium | High, Medium, Low; default for new plans |
 | Plan deadline | 14 days | Whole number 1–365 from creation; default for new plans |
 
@@ -673,13 +702,13 @@ Configure three independently enabled categories, all enabled by default: approv
 
 ### 11.10 Source systems
 
-List source applications referenced by KPIs. Configure source owner/team up to 100 characters and expected refresh of Daily, Weekly or Monthly. Display these values in Data flows.
+List source applications referenced by KPIs or added to the source catalogue. Allow adding sources before KPI registration. Configure source owner/team up to 100 characters and an enabled expected refresh of Daily, Weekly or Monthly. Display these values alongside mapped published KPIs in Data flows.
 
-This is catalogue configuration only. It does not configure endpoints, credentials, mappings, schedules, retries or connection tests. Source refresh expectations do not change the fixed monthly KPI measurement frequency.
+This is catalogue configuration only. It does not configure endpoints, credentials, ingestion schedules, retries or connection tests. The intended source metric key is maintained in the KPI definition, not a live mapping service. Source refresh expectations do not change the fixed monthly KPI measurement frequency.
 
 ### 11.11 Lists of values
 
-Maintain unique KPI types, including custom categories. Enable/disable supported units (`%`, days, min, count, rate), priorities (High/Medium/Low), recovery review cadence (Weekly/Fortnightly/Monthly), and source refresh cadence (Daily/Weekly/Monthly). At least one value must remain per list. Reject empty/duplicate names and disabling the selected plan default.
+Maintain unique KPI types, including custom categories. Enable/disable supported units (`%`, days, min, count, rate), priorities (High/Medium/Low), recovery review cadence (Weekly/Fortnightly/Monthly), and source refresh cadence (Daily/Weekly/Monthly). At least one value must remain per list. Values must be non-empty, unique case-insensitively and at most 60 characters. Reject disabling a selected plan default until that default is changed.
 
 New forms use enabled values. Existing records retain their current values when edited; removing a KPI type from new entry must not invalidate historical definitions or pending approvals. Changes persist with audit entries. Departments, sources, accounts and the hierarchy remain separate editable catalogues. Execution/approval statuses, role meanings, directions, plan types and the monthly reporting calendar remain governed system values rather than arbitrary lists.
 
@@ -721,7 +750,7 @@ The following is a proposed functional contract, not an existing endpoint:
 
 **PRD-DAT-05:** Show connection state, last successful ingestion, freshness, errors and retry/reconciliation outcomes only when a real integration service supplies those facts.
 
-Detailed integration dependencies and an example payload are documented in [Integration requirements](../docs/INTEGRATIONS.md).
+Detailed integration dependencies and an example payload are documented in [Integration requirements](INTEGRATIONS.md).
 
 ## 13. Reporting, notifications and audit
 
@@ -766,7 +795,7 @@ Detailed integration dependencies and an example payload are documented in [Inte
 | Objective | Parent strategic goal ID, objective name, owner, department; legacy `goals` array index | Parent of KPI `goal` references and direct objective actions |
 | Department | Name; optional configured owner | Account/KPI scope; plan scope inherited |
 | Account | ID, name, email, role, department, active | Requester, decision actor, audit actor |
-| KPI | ID, name, owner, goal, department, source, definition, formula, type, unit, direction, target, Amber, draft/publication period, version | Parent of plans and KPI requests |
+| KPI | ID, name, owner, goal, department, source, optional sourceKey, definition, formula, type, unit, direction, target, Amber, draft/publication period, version | Parent of plans and KPI requests |
 | Period observation | Actual, confidence and period position | Stored in KPI history |
 | Target history | Target/Amber per period | Preserves historical scoring |
 | Plan | ID, type, optional KPI ID, objective/department for direct actions, title, owner, due date, priority, effect, status, revision/version | Action delivery details or recovery corrective details; recovery includes immutable trigger snapshot |
@@ -776,11 +805,11 @@ Detailed integration dependencies and an example payload are documented in [Inte
 | Closure snapshot | Time, evidence, plan, milestones, monitoring and KPI evidence | Captured at approved closure |
 | Approval request | ID, entity/type, department, before/proposed data, base version, requester, status, deadlines, decisions | References KPI or plan |
 | Audit entry | Event, actor/actor ID, department context, timestamp | Workspace activity |
-| Application configuration | Labels, policies, defaults, notification toggles, department ownership, source profiles | Shared local workspace settings |
+| Application configuration | Labels, policies, defaults, enabled lists, retained KPI types, notification toggles, department ownership, source profiles | Shared local workspace settings |
 
 ### 14.2 Persistence and identity
 
-The workspace, configuration, accounts and decisions persist under `itqan-demo-v1` in browser localStorage with a seed-generation marker. The simulated session uses `itqan-auth` and `itqan-user`. A browser refresh retains saved workspace data. Different browser profiles, hosts or ports have separate storage.
+The workspace, configuration, accounts and decisions persist under `itqan-demo-v1` in browser localStorage with seed marker `itqan-iq`. The simulated session uses `itqan-auth` and `itqan-user`. A browser refresh retains saved workspace data. Different browser profiles, hosts or ports have separate storage. Same-seed legacy paired goal/objective records migrate into separate parents and objectives while preserving existing objective indexes and KPI/plan links.
 
 Objective references currently use stable array positions and department references use names. They are not production database keys. The backend design must introduce stable identifiers and migrations without breaking existing links.
 
@@ -809,13 +838,16 @@ The interface supports deactivating accounts and closing/reopening plans. It doe
 | EXC-13 | Completed milestone without evidence | Reject completion |
 | EXC-14 | Monitoring before approval/start or while request pending | Reject review |
 | EXC-15 | Blocked assessment without blocker explanation | Require blocker/intervention detail |
-| EXC-16 | Review date today/past | Require a future next-review date |
+| EXC-16 | Monitoring assessment sets next review to today/past | Require a future next-review date; a due date on initial plan detail is instead shown as review due |
 | EXC-17 | Ineffective/stale review or insufficient recovery periods | Reject effectiveness/closure as applicable |
 | EXC-18 | Closure/reopening without evidence/reason | Reject request |
 | EXC-19 | Duplicate account email/department name | Reject duplicate case-insensitively |
 | EXC-20 | Administrator removes own access | Reject account change |
 | EXC-21 | Invalid configuration boundary/day count | Display inline error and preserve prior settings |
 | EXC-22 | No measured KPI data | Show No data and keep gaps visible; do not fabricate a score |
+| EXC-23 | Invalid primary recovery submission | Keep the form with an error; create neither a plan nor a request; offer explicit Save draft for unfinished corrective detail |
+| EXC-24 | Duplicate goal or objective under the same parent | Reject duplicate case-insensitively and retain existing hierarchy |
+| EXC-25 | Empty list, duplicate value or disabling a selected default | Reject configuration; retain existing enabled values and defaults |
 
 UI text entered into rendered record fields must be displayed as content, not executed as markup. Existing tests cover representative escaping paths; comprehensive input validation and output encoding remain part of production security review.
 
@@ -838,7 +870,7 @@ UI text entered into rendered record fields must be displayed as content, not ex
 | UAT-11 | Approve current target change | Current threshold changes; actuals and prior thresholds remain identical | TGT-04/05 |
 | UAT-12 | Propose KPI owner/objective amendment | Connected live definition unchanged until both decisions; links update after approval | KPI-06/08 |
 | UAT-13 | Open objective → KPI → recovery → Back | Connected records and return path remain coherent | REL-01/02, NAV-04/05 |
-| UAT-14 | Create plan from KPI | KPI preselected, owner/defaults initialized, Open/Draft status | NAV-03, PLN-06 |
+| UAT-14 | Create an action plan or explicitly save a recovery draft from KPI | KPI preselected, owner/defaults initialized, Open draft with no request | NAV-03, PLN-06, REC-06 |
 | UAT-15 | Submit/start incomplete plan or milestone dated after plan deadline | Validation blocks operation | PLN-06/08, MIL-01 |
 | UAT-16 | Complete and approve plan, then Start | Execution becomes In progress without another approval round | PLN-07/08 |
 | UAT-17 | Amend approved plan structure | Existing plan retained pending Department and Strategy decisions | PLN-09 |
@@ -864,7 +896,6 @@ UI text entered into rendered record fields must be displayed as content, not ex
 | UAT-37 | Switch login language, toggle password visibility and open demo access on mobile | Correct RTL/visibility states; assigned demo roles remain reachable without credentials | AUTH-03/04 |
 | UAT-38 | Select each visible role; choose a department for a departmental role | Matching active accounts and accurate scope/responsibility shown; entry opens the selected account's authorized workspace | AUTH-05 |
 | UAT-39 | Choose a department without an active account, or submit a mismatched account | Empty-selection explanation and disabled entry; mismatched submission cannot establish a session | AUTH-05 |
-
 | UAT-40 | Create action directly from an objective with no KPI; approve, start and complete | Department scope and approval sequence apply; no corrective or monitoring form required | ACT-01, PLN-06, closure gate |
 | UAT-41 | Inspect healthy, missing-data and historical KPI details; then open a current breached KPI | Recovery creation appears only for current underperformance and preserves its trigger snapshot | REC-01/02 |
 | UAT-42 | Create recovery from board, global menu and Impact | Identical fields/defaults/approval rules after eligible KPI selection | MIL-03, NAV-02 |
@@ -873,12 +904,17 @@ UI text entered into rendered record fields must be displayed as content, not ex
 | UAT-45 | Search source, draft KPI, plan and approval ID from a departmental account | Correct links; no other department records | AIG-02/03, ACC-02 |
 | UAT-46 | Approve a formula/source metric-key amendment | Original values remain through Department review; final approval applies changes without rewriting actuals | Section 6.3 |
 | UAT-47 | Create and submit recovery; approve Department then Strategy; use Manage plan | Exactly one request starts at creation; pending work is locked; approved routine updates are saved and structural changes request amendment approval | REC-04 |
+| UAT-48 | Submit recovery with missing cause/steps; then choose Save draft | Invalid primary submission creates nothing; explicit draft creates no request and can be completed/submitted later | REC-04/06, EXC-23 |
+| UAT-49 | Open source from search/KPI, then clear source filter | Cards and incoming-results rows use the same source filter; clearing restores scoped results | DAT-05, AIG-06 |
+| UAT-50 | Inspect login at desktop, narrow mobile and Arabic/RTL | UAE flag keeps its orientation; punch line is prominent; role cards, credentials and UAE PASS remain available without overflow | AUTH-04/05/06 |
+| UAT-51 | Create empty goal, add two objectives, rename/reparent one and refresh | No fabricated score for empty goal; linked KPI/plan references persist and strategic roll-up updates | STR-04/05/06, CAL-04/05 |
+| UAT-52 | Disable an active plan default or remove every value from a list | Save rejected; defaults/list remain valid; existing records keep retired values where applicable | Section 11.11, EXC-25 |
 
 ### 16.2 Verification status
 
-At the current implementation baseline, the existing automated suite contains 51 tests plus an eleven-view VM smoke check and passes. Those tests cover calculations, access projections, approvals, connected navigation, configuration, plan monitoring, closure, exports and static-server behavior. The UAT catalogue above is a business review checklist, not a claim that each row has an independently executed manual test.
+At the 17 September 2026 application baseline, all 51 automated tests, the eleven-view VM smoke check and syntax checks passed. Coverage includes calculations, hierarchy migration/weighting, scope, shared recovery forms and immediate submission, approvals, list retention, source mappings/search, login, monitoring, closure, exports and static-server behavior. The 52 UAT scenarios above are a business review checklist, not the automated test count or a claim that every row has been independently executed manually.
 
-This specification is a documentation deliverable. Visual browser QA, end-user acceptance, production integration testing, accessibility review, penetration testing and load testing remain separate activities.
+Prior rendered Chrome checks covered the login at 1440, 1024, 768, 390 and 320 CSS-pixel widths, including Arabic/RTL at desktop and mobile widths, and changed hierarchy, recovery, impact, lists and search screens at desktop/mobile sizes. Full browser/accessibility review, end-user acceptance, live integration testing, penetration testing and load testing remain separate activities. This documentation revision does not claim new runtime test coverage.
 
 ## 17. Production requirements, limitations and open decisions
 
@@ -896,11 +932,11 @@ This specification is a documentation deliverable. Visual browser QA, end-user a
 | PRD-08 | Tested error recovery for failed saves/network/service outages | No backend/network workflow lifecycle |
 | PRD-09 | Complete Arabic localization, keyboard/screen-reader review and rendered responsive QA | Partial localization and limited automated UI checks |
 | PRD-10 | Operational notifications with delivery preferences and tracking, if selected | Computed in-app notifications only |
-| PRD-11 | Stable entity IDs and migration of local demonstration data, if required | Goal index/department-name references |
+| PRD-11 | Stable entity IDs and migration of local demonstration data, if required | Legacy objective-index/department-name references |
 
 ### 17.2 Known functional qualifications
 
-- Some explanatory text still refers to “PMO approval”; the actual implemented policy is Department review followed by Strategy review.
+- Impact and some administration copy still say “parent goal” for the objective aggregate used in escalation; the calculation uses linked-objective achievement, as documented in Section 10.4.
 - Some Arabic recovery explanations and date labels remain tied to sample periods or the default two-period rule; full configuration-aware localization is incomplete.
 - Source “expected refresh” is a catalogue attribute, not a scheduling engine. KPI frequency remains Monthly.
 - Baseline zero on a new KPI is a storage placeholder and must not be represented as a source-validated baseline.
@@ -937,14 +973,16 @@ These items are recorded for a later implementation phase. They do not prevent u
 | Functional area | Main implementation/reference |
 | --- | --- |
 | Views, routes, scoped access, registration and forms | [Application](../src/app.js) |
+| Strategic hierarchy, shared recovery chooser/summary, lists, sources and search | [Workspace features](../src/features/workspace.js): `saveStrategicGoal`, `saveChildObjective`, `recoveryStart`, `recoveryWorkflowSummary`, `saveLookup`, `workspaceSearch` |
 | Approval submission/decision/version handling | `submitRequest`, `decideRequest`, `canDecide`, `approvalDetail` in the application |
 | Plans, revisions, monitoring and closure | `recordAction`, `planGaps`, `recordMonitoring`, `effectiveReview`, `validateTransition` |
-| Admin policy and defaults | `saveConfiguration`, `saveDepartment`, `saveObjective`, `updateAccount`, `adminContent` |
+| Admin policy and defaults | `saveConfiguration`, `saveDepartment`, `updateAccount`, `adminContent`; hierarchy/list editors in workspace features |
 | Scoring, validation, historical targets and recovery eligibility | [Performance engine](../src/domain/performance.js) |
 | UI/workflow/configuration regression coverage | [Workflow tests](../tests/actions.test.cjs) |
 | Calculation regression coverage | [Calculation tests](../tests/data.test.cjs) |
 | Static public/private HTTP behavior | [Server](../server/index.cjs), [server tests](../tests/server.test.cjs) |
-| Local setup and structure | [Project README](../README.md), [architecture](../docs/ARCHITECTURE.md), [development guide](../docs/DEVELOPMENT.md) |
-| User navigation and production connections | [User guide](../docs/USER_GUIDE.md), [integration requirements](../docs/INTEGRATIONS.md) |
+| Login layout and brand | `renderLogin` in application, [styles](../src/styles/main.css), [login guide](LOGIN.md) |
+| Local setup and structure | [Project README](../README.md), [architecture](ARCHITECTURE.md), [development guide](DEVELOPMENT.md) |
+| User navigation and production connections | [User guide](USER_GUIDE.md), [integration requirements](INTEGRATIONS.md) |
 
 This specification is based on the current application, not a reproduction of a client-supplied functional specification. Future changes should update the applicable requirement IDs, business acceptance scenarios and implementation references together.

@@ -1,6 +1,6 @@
 # ITQAN IQ
 
-A connected performance-management prototype for objectives, KPI target registration, corrective plans, recovery monitoring and approvals. All supplied records are synthetic examples.
+A connected performance-management prototype for strategic goals, objectives, KPI registration and targets, action plans, recovery monitoring and approvals. **Intelligence in Performance.** All supplied records are synthetic examples.
 
 ## Start
 
@@ -19,7 +19,7 @@ The app uses vanilla JavaScript, CSS and a Node.js static server. There is no bu
 ITQAN IQ/
 ├── public/
 │   ├── index.html              # Browser entry point
-│   └── assets/icon.svg        # Shared product mark
+│   └── assets/               # Product mark and UAE PASS artwork
 ├── src/
 │   ├── app.js                 # UI, routing, local state and workflows
 │   ├── features/workspace.js  # Strategy hierarchy, shared recovery, search and catalogues
@@ -49,10 +49,21 @@ ITQAN IQ/
 
 ## Documentation
 
-Start with the [documentation index](docs/README.md), [architecture](docs/ARCHITECTURE.md), [development guide](docs/DEVELOPMENT.md), [user guide](docs/USER_GUIDE.md), [workflows](docs/WORKFLOWS.md), [administration](docs/CONFIGURATION.md), and [integration requirements](docs/INTEGRATIONS.md).
+Start with the [documentation index](docs/README.md). The [functional specification](docs/FUNCTIONAL_SPECIFICATION.md) defines the detailed requirements and acceptance scenarios; the [user guide](docs/USER_GUIDE.md) explains how to use the application. Technical setup, configuration, connected workflows and production dependencies have dedicated guides in `docs/`.
+
+## Connected workflow
+
+1. Strategy Team creates a strategic goal, then its objectives.
+2. Departments **Register KPI** against an objective, set definitions/targets and submit for Department then Strategy approval.
+3. **Data flows** shows read-only, source-attributed actuals. Live ingestion is not connected.
+4. An **action plan** supports an objective or published KPI. A **recovery plan** starts only for a current Amber/Red KPI.
+5. Recovery uses one form from every entry point. **Create & submit for approval** starts the review cycle immediately; **Save draft** is an explicit alternative.
+6. After both approvals, **Manage plan** supports delivery, evidence and monitoring. Closure follows approval; recovery also requires a current Effective review and sustained Green results.
+
+AI insights searches the scoped workspace and explains navigation using local rules. Administrator accounts open the ten-section Administration screen automatically. The UAE-themed login retains visible role selection, Login ID/password and UAE PASS.
 
 ## Current scope
 
 The account picker and department restrictions simulate assigned roles. Records and configuration persist in browser localStorage. Live authentication, server-side authorization, a database, source-system actuals ingestion, outbound notifications and a connected AI service remain unimplemented. Actuals have no manual-entry UI; users register KPIs and set targets.
 
-Private client specifications remain excluded by `.gitignore`. Project documentation is in `docs/`; the existing ignore rule also excludes these local Markdown files.
+The maintained Markdown files in `docs/` are explicitly tracked. Private client specifications and other unlisted material in that directory remain excluded by `.gitignore`. `docs/` is the canonical documentation folder; there is no maintained `doc/` copy.

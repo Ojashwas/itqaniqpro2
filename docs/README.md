@@ -1,19 +1,37 @@
-# Project documentation
+# ITQAN IQ documentation
 
-ITQAN IQ connects strategic objectives to KPIs, target decisions, action/recovery plans, approvals and monitoring. These documents describe the implemented prototype and identify what production still requires.
+**Reviewed: 17 September 2026.** These documents describe the current application: strategic goals → objectives → KPIs → action/recovery plans → approvals → delivery and monitoring. Production requirements are identified separately from working prototype behavior.
 
-| Document | Contents |
+`docs/` is the canonical documentation folder. If an editor still has tabs under `doc/`, reopen the corresponding files from this folder.
+
+## Reading guide
+
+| Document | Audience and contents |
 | --- | --- |
-| [Architecture](ARCHITECTURE.md) | Folder responsibilities, runtime, domain records, storage and boundaries |
-| [Development](DEVELOPMENT.md) | Installation, commands, local server, verification and contribution guidance |
-| [User guide](USER_GUIDE.md) | Screen walkthrough, navigation, roles, target setup and reporting |
-| [Login experience](LOGIN.md) | Login ID/password, UAE PASS, demo access and connection status |
-| [Functional specification](FUNCTIONAL_SPECIFICATION.md) | Detailed screen, workflow, validation and acceptance requirements |
-| [Connected workspace](WORKSPACE_FLOWS.md) | Screen responsibilities, strategic hierarchy, shared recovery creation, search and lists |
-| [Workflows](WORKFLOWS.md) | Objective/KPI links, approvals, corrective delivery and recovery closure |
-| [Configuration](CONFIGURATION.md) | Admin access, settings, defaults and effects |
-| [Integrations](INTEGRATIONS.md) | Required identity, data-flow and backend contracts; not implemented endpoints |
+| [Functional specification](FUNCTIONAL_SPECIFICATION.md) | Business owners and testers: detailed screen requirements, permissions, fields, validations, calculations and acceptance scenarios |
+| [User guide](USER_GUIDE.md) | End users: sign-in, strategic setup, KPI registration, approvals, action delivery and recovery monitoring |
+| [Connected workspace](WORKSPACE_FLOWS.md) | Product/design teams: screen responsibilities, record links, shared recovery entry points and configurable lists |
+| [Workflows](WORKFLOWS.md) | Process owners: submission, two-stage approval, execution, amendments, monitoring, closure and reopening |
+| [Configuration](CONFIGURATION.md) | Administrators: all ten sections, list values, defaults, validation and when changes take effect |
+| [Login experience](LOGIN.md) | Product/design teams: UAE identity, visible roles, credentials, UAE PASS, responsive layout and connection status |
+| [Architecture](ARCHITECTURE.md) | Developers: runtime, files, routes, information model, persistence and authorization boundaries |
+| [Development](DEVELOPMENT.md) | Contributors: installation, commands, checks, change placement and documentation maintenance |
+| [Integrations](INTEGRATIONS.md) | Integration owners: current connection status and proposed identity, actuals, workflow and AI service requirements |
 
-For a quick start and directory tree, see the [project README](../README.md).
+For installation and the directory tree, see the [project README](../README.md). For the exact approval and recovery gates, use Sections 7–9 of the functional specification.
 
-Keep these documents synchronized with implemented behavior. Distinguish current functionality from proposed production work. Do not copy classified source specifications, credentials or client records into this directory.
+## Current functional baseline
+
+- Strategic goals contain multiple objectives. Objectives connect to registered KPIs and may also have simple action plans without a KPI.
+- KPI definitions and current targets follow Department review, then Strategy review. Actuals have no manual-entry form.
+- Recovery creation is available only for current published Amber/Red KPIs. Every entry point uses the same form and **Create & submit for approval** action; unfinished work can use **Save draft**.
+- **Manage plan** permits execution after approval. Structural amendments, closure and reopening require approval; routine progress/evidence and monitoring are audited.
+- Department roles see their department; Strategy Team sees all departments. Administrator manages shared configuration and cannot bypass business approval.
+- AI insights is a local search/navigation guide. Identity, source ingestion, a shared backend and a connected AI model are not implemented.
+- The login has UAE flag colors, the visible **Intelligence in Performance.** headline, four role cards, Login ID/password and UAE PASS.
+
+## Maintenance
+
+Update the relevant specification requirements, acceptance scenarios and task guides whenever application behavior changes. Keep implemented behavior, proposed contracts and open decisions distinct. Current verification evidence is recorded in the [development guide](DEVELOPMENT.md#verification).
+
+These authored Markdown files are tracked through the explicit `.gitignore` allowlist. Original client documents, credentials and real client records are not part of this documentation set.

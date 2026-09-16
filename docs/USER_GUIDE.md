@@ -1,75 +1,185 @@
-﻿# ITQAN IQ · إتقان
+# ITQAN IQ user guide
 
-Interactive CONFIDENTIAL CLIENT performance-management prototype based on the supplied functional specification. All people, measures, results and insights are synthetic examples, not official client records. The ITQAN IQ mark on the sign-in page and in the sidebar is the product brand; the client seal beside it is a placeholder, not the official client emblem.
+**Reviewed: 17 September 2026.** ITQAN IQ connects strategic goals, objectives, KPI definitions and targets, action plans, recovery plans and approvals. All supplied accounts and performance records are synthetic examples. The application currently saves work in this browser.
 
-## Run
+## Start and sign in
 
-Requires Node.js. Serving the app needs no package installation. Run `npm ci` before running the automated tests.
+Run `npm ci` and `npm start` from the project root, then open [ITQAN IQ](http://localhost:5180). Full setup instructions are in [Development](DEVELOPMENT.md).
 
-```sh
-npm start
-```
+The UAE-themed login displays **Intelligence in Performance.** above the role selector, with **Clarity. Confidence. Impact.** as the supporting line.
 
-Open http://localhost:5180 and choose a visible role card and an assigned demo account with an assigned role and department. Run `npm run check` for syntax and `npm test` for the calculation suite and the eleven-view smoke test.
+1. Select one of the four visible role cards.
+2. For a department role, select the department.
+3. Choose a matching active demo account and review the access summary.
+4. Select **Enter selected workspace**. No password is needed for demo access.
 
-## Suggested walkthrough
+Login ID/password and UAE PASS are visible organization sign-in options, but live identity is not connected. They show connection guidance and do not sign you in. English/Arabic can be selected before entry; role choices survive the language change. See [Login experience](LOGIN.md).
 
-1. Choose a visible role card on the sign-in screen, select a department where applicable, and choose an assigned demo account. Department contributors and approvers see their assigned department; Strategy Team sees all departments; Administrator manages accounts. Sign out to preview another role. These are simulated accounts, not authenticated identities.
-2. Review the executive dashboard and strategic goal achievement.
-3. Open Strategy & objectives. Strategy Team or Administrator can **Create strategic goal**, then **Create objective** beneath it. Each goal can hold multiple objectives. Use **Register KPI** on an objective to retain its context.
-4. Open Service completion time to review the critical breach and linked recovery action.
-5. Use Target setup in KPI details to propose the current period's target and amber boundary. Published targets stay unchanged through Department review and change only after Strategy review. Prior targets and external actuals are preserved.
-6. Change the reporting period on Executive overview, Strategy & objectives, Data flows, Impact & escalation, or Reports & analytics. The selection is retained across these analytical views. KPI target setup, AI insights and Plans & recovery use current data and have no reporting-period selector; Administration and Audit trail also omit it.
-7. Use the shared **Create** menu to **Register KPI**, create an action plan or **Create recovery plan**. Recovery creation first asks for an eligible KPI, then opens the same form used by Impact & escalation and KPI details. An action can link directly to an objective with a responsible department, or to a published KPI. From a current At risk or Off track KPI, select **Create recovery plan**; its department is inherited from the KPI. KPI and action records remain drafts until submitted. Recovery creation offers **Create & submit for approval**, which immediately starts Department review; **Save draft** is an explicit alternative.
-8. For an **action plan**, enter the task, owner, deadline and expected outcome, save and submit. After approval, start delivery, add progress updates and submit completion evidence; a checklist is optional. For a **recovery plan**, review the captured KPI gap, enter cause and corrective steps, select **Create & submit for approval** to start Department then Strategy review. Initial review details and the first milestone are prefilled. After approval, use **Manage plan** to start delivery, add progress/evidence and monitor effectiveness. Recovery closure needs completed milestones, a current Effective review and the configured consecutive Green KPI periods (default two). Both types follow Department then Strategy approval for plans, structural amendments, closure and reopening.
+| Role | What you can do |
+| --- | --- |
+| Department Contributor | View your department, register KPIs, propose targets/changes, create plans and record approved delivery |
+| Department Approver | The same departmental work, plus first-stage approval of another person's requests |
+| Strategy Team | Work across departments, maintain goals/objectives and perform final approval of another person's requests |
+| Administrator | View all departments, maintain the hierarchy, configure the application and manage accounts; no KPI/plan business writes or approval bypass |
 
-The **Approvals** inbox shows submitted data, current records, decision notes and approval stages, with filters for assigned reviews, submissions, pending and decided requests. Notifications link to assigned decisions, returned submissions and monitoring reviews due. Published KPI names, owners, definitions and objective links can be amended through the same approval flow without rewriting actuals. Requesters cannot approve their own submissions. Wrong-department reviewers cannot decide. Rejected requests can be revised and resubmitted; stale requests cannot be approved. Routine progress, evidence and monitoring are recorded against the approved plan and audited. Changes to plan structure or KPI results, and overdue monitoring reviews, invalidate prior effectiveness verification. Action completion snapshots preserve delivery evidence and links. Recovery closure snapshots also preserve monitoring and KPI evidence. Connected record drawers include Back navigation.
+Sign out from the top bar to change demo accounts. Sign-out preserves workspace records.
 
-To open **Administration**, sign out, choose the **Administrator** role and the **Workspace administrator** account, and enter the workspace. Administrator sign-in opens Administration automatically; the sidebar and top bar both provide a shortcut. The direct route is `http://localhost:5180/#/admin`. Other roles see an access explanation on that route.
+## Find the right screen
 
-Administration has ten sections with locally saved, audited settings:
+| Screen | Use it for |
+| --- | --- |
+| Executive overview | Performance totals, strategic achievement, trends and attention items |
+| Strategy & objectives | Goals, their objectives, linked KPIs and direct objective actions |
+| KPI registry | **Register KPI**, edit drafts, propose published-definition changes and set current targets |
+| Data flows | Read source-attributed actuals, source metric keys, confidence and expected refresh |
+| AI insights | Search the permitted workspace and get explanations with navigation links |
+| Impact & escalation | Understand KPI gaps, advisory escalation, recent updates and linked plans |
+| Plans & recovery | Create plans; manage Open, In progress and Closed work |
+| Reports & analytics | Published-KPI CSV export, department comparisons and a print view |
+| Approvals | Review requests, decisions, deadlines and returned submissions |
+| Administration | Shared configuration and accounts; Administrator only |
+| Audit trail | Scoped local business and configuration activity |
 
-- **Organization:** organization and framework labels, default language and sign-in landing page.
-- **Strategy & objectives:** create parent strategic goals and child objectives; edit names, owners and responsible departments while retaining KPI links.
-- **Lists of values:** maintain KPI types and enable supported units, priorities, review frequencies and source refresh frequencies. New forms use the lists; existing records keep their saved values.
-- **Departments:** add departments, record owners and check approver coverage; departments feed account assignment and KPI creation.
-- **Users & roles:** manage names, emails, assigned roles, department access and active status.
-- **Performance rules:** aggregate Green/Amber boundaries used by goal status and parent-goal escalation. KPI targets and actuals remain unchanged.
-- **Approval policy:** review deadlines per stage, department approver coverage and strategy reviewers. New stages use the configured deadline; existing deadlines remain unchanged.
-- **Plan & recovery defaults:** consecutive Green periods required for recovery closure, and new-plan priority/deadline and recovery monitoring cadence. Policy changes can invalidate effectiveness reviews; existing closure snapshots remain intact.
-- **Notifications:** enable or disable approval, monitoring and performance categories in the in-app notification centre and indicator.
-- **Source systems:** add source systems, configure source owners and expected refresh cadence, also displayed in Data flows. These catalogue settings do not create live connections.
+Reporting-period selection appears only on Executive overview, Strategy & objectives, Data flows, Impact & escalation and Reports & analytics. Those analytical views share their selected month. KPI setup, plans and AI guidance use the latest sample month, **September 2026**. Approval, administration and audit work have no period selector. Plan deadlines and review dates use today's calendar, independently of the sample measurement period.
 
-Administrators cannot bypass the two-stage business approval policy. Requesters cannot approve their own requests. If a department approver submits a request, another department approver must be assigned. All configuration and accounts remain a local demonstration, not production access control.
+## Create the strategic hierarchy
 
-All UI queries, direct record views, notifications, search, exports and approval/audit lists respect the current role's department scope. This is application behavior for the demo, **not a security boundary**: every record remains in browser localStorage. Production must enforce these same permissions and approval transactions on an authenticated backend and return only authorized department data.
+As Strategy Team or Administrator:
 
+1. Open **Strategy & objectives → Create strategic goal**.
+2. Enter its name and owner; Arabic name and description are optional.
+3. Select **Create goal & add objective** to open the objective form under that goal.
+4. Enter the objective, owner and responsible department, then save.
+5. Add further objectives from the goal's **Create objective** button.
 
-Explore the connected application from **Strategy & objectives**: each goal contains its objective, linked KPIs and recovery actions. Select an objective to see its performance, recovery coverage and measures, or open its filtered registry and action board. KPI details always show linked actions, including closed actions and actions for healthy measures. KPI-linked plan details show a clickable goal → objective → KPI → plan path. Direct objective actions link back to their objective. Registry rows and impact views also link directly to objectives and recovery. Creating recovery from a KPI automatically links it to that KPI and its objective; all views read the same saved records. Updating a KPI recalculates objective achievement, while closing an action preserves its recovery evidence without changing KPI observations.
-Register a KPI with its definition, source application and targets. It stays in Draft through Department and Strategy review. Actuals and baselines must arrive from the source application; neither can be entered manually here.
-9. Open AI insights for a simple workspace guide: review KPIs needing attention, search goals, objectives, draft/published KPIs, plans, sources, approval IDs and audit updates; ask how ITQAN IQ works, how to set targets or where actuals come from, and follow direct links to objectives, targets, data flows and recovery. Suggestions respect the selected department and use the latest reporting data; action counts reflect current action state. The guide uses local rules and synthetic workspace data, not a connected AI model.
-10. Export a CSV or use the report print preview to save a PDF.
-11. Switch to Arabic to preview RTL navigation and the executive dashboard.
-12. Sign out from the top bar to return to the sign-in page.
+A goal can be saved before its objectives are completed. Multiple objectives may belong to a goal. Names and owners can be edited without losing existing links. Hierarchy changes save directly with audit history; they do not enter the KPI/plan approval cycle.
 
-## Implemented prototype scope
+From an objective, use **Register KPI** to preselect that objective, or **Create action plan** to define work without a KPI. Department users view their relevant hierarchy but do not edit it.
 
-Eleven navigation views cover strategic alignment, KPI definitions and target setup, read-only incoming data flows, deterministic scoring, illustrative insights, impact and escalation, recovery actions, reports, approvals, account administration and activity history, reached through a demonstration sign-in page. Eight seeded KPIs span four strategic goals and four departments. Actuals and confidence flags are owned by external source applications; no manual actual-entry form is available. Source integrations are not configured in this prototype. Search, filters, notifications, target forms, local persistence, CSV export and print styling work without backend services.
+## Register and maintain a KPI
 
-`src/domain/performance.js` is the single calculation engine. `src/app.js` provides the local UI, role scoping and approval workflow: every count, achievement, RAG status, trend, breach severity, weight, forecast and trajectory point rendered on screen is produced by that engine, so the figures on the dashboard, registry, strategy map, reports and copilot always reconcile with one another and with the recorded observations.
+1. Open **KPI registry → Register KPI**, the global **Create → Register KPI**, or an objective's **Register KPI** button.
+2. Enter name, owner, source application, definition and measurement formula. Add a source metric/field key if known.
+3. Select the objective, permitted department, type, measurement direction and unit.
+4. Set the target and Amber boundary, then choose **Save draft for approval**.
+5. Open the saved KPI and submit it for approval. Saving a KPI draft does not submit it automatically.
 
-Higher-is-better and lower-is-better thresholds determine KPI RAG. Achievement is capped at 100%, with equal weights normalised within each parent and equal goal weights overall. Aggregate labels default to 95% for Green and 85% for Amber; Administration can change these boundaries, including classification in historical views. Historical examples cover April–September 2026 and any month can be selected. KPIs without an observation are reported as No data and excluded from achievement rather than counted as zero. Recovery defaults to two consecutive Green observations and can require up to six through Administration.
+The KPI remains Draft through Department review and publishes only after Strategy review. New KPIs have no actual observations and do not invent historical results.
 
-## Boundaries
+For a published KPI, use **Propose KPI changes** for name, owner, definition, formula, source metric key or objective, with a reason. Use **Target setup** for current-period target/Amber changes. Active values stay unchanged until both approvals complete. Previous targets and all actuals are preserved.
 
-The source functional specification is **not included in this repository** — it is a client document classified `OFFICIAL – Internal`. Everything published here is anonymised prototype code with synthetic data only.
+Source application, department, unit and measurement direction are not editable through the published-definition amendment form. Types and supported units offered for registration come from Administration.
 
-This is a frontend demonstration. The account picker simulates role-assigned sessions in browser storage; it does not authenticate a person. The UI enforces department scope and two-stage approval behavior, but local data and session values remain inspectable/editable. No live SSO, server authorization, external source connector, outbound notification, trained AI or tamper-proof audit service is connected. AI answers use local rules. Arabic navigation and core workflows are supported, while some administration and approval details retain English copy. Existing plans without approval metadata are preserved as drafts requiring review before execution.
+## Understand actuals and performance
 
-Data, role assignments and approval records persist in browser localStorage. The ITQAN IQ mark is a resolution-independent SVG ([icon.svg](../public/assets/icon.svg)) referenced by the sidebar, the sign-in card and the favicon from that single file, so it stays sharp from 16px to app-icon sizes and cannot drift between copies. The mark is the **iQ** monogram: a dotted stem beside a magnifying glass whose lens holds three ascending performance bars, rendered with a gradient tile, sheen, cast depth and a lens highlight. The lockup is drawn from the workspace green so it sits in the same family as the executive overview — deep green `#0d3a30` with the modern green accent `#0d7758` — and sets "ITQAN IQ" in wide-tracked Montserrat with the tagline beneath. RAG status and charts keep their own accessible palette so brand green is never confused with an On track signal. Fonts load from Google Fonts, with local system fallbacks; the interface uses a 12–34px type scale so every label, footnote and table cell stays legible. Production preparation requires full Arabic localisation, accessibility and browser QA, authenticated APIs, server-side validation, approval/version history, integrations and security controls.
+Actuals and baseline observations belong to source applications. There is no **Record actual** form. Plan progress and monitoring evidence are text about delivery, not KPI observations.
 
-## Validation
+**Data flows** groups published KPIs by source and shows their actual, confidence, mapping key, source owner and expected refresh. Follow **View data flows** from a KPI or select a source search result to filter both source cards and the incoming-results table. Use **Show all sources** to clear it. Source configuration does not establish a live connection; displayed history is synthetic.
 
-`npm test` runs 51 tests covering calculations, department-scoped views/search/CSV, direct-record guards, all ten admin sections, saved configuration and its workflow effects, assigned-role sign-in, two-stage approval via UI controls, no self-approval, rejection/resubmission, stale requests, KPI amendments, approval notifications/filters, corrective plans, monitoring freshness, closure guards, period scoping, Back navigation, read-only actuals and target history. HTTP checks cover public assets, private-path rejection, malformed requests and HEAD requests. The Node VM smoke test covers all eleven views. `npm run check` validates frontend and server syntax. The redesigned login has been checked in headless Chrome at desktop and mobile sizes, including Arabic/RTL; the changed strategy, plan, recovery, Impact, lists and search screens have also been checked at desktop/mobile widths; comprehensive accessibility and browser QA remain separate work.
+For Higher is better, an actual at or above target is Green; for Lower is better, an actual at or below target is Green. Amber and Red use the approved Amber boundary. Missing values display No data. Objective achievement averages measured KPIs, strategic-goal achievement averages measured objectives, and overall achievement averages measured goals. Completing a plan does not change those observations or scores.
 
-Live identity, backend authorization and source data integrations remain unimplemented. The exact inputs and required production behavior are documented in [Connection requirements](INTEGRATIONS.md).
+## Choose an action plan or recovery plan
+
+| Question | Action plan | Recovery plan |
+| --- | --- | --- |
+| Why create it? | Deliver a task supporting an objective or KPI | Restore a KPI whose current actual misses its target |
+| What can it link to? | An objective and department, or a published KPI, including a healthy KPI | One published KPI currently Amber/Red |
+| How is it submitted? | Save the draft, then submit | **Create & submit for approval**; optional **Save draft** |
+| What do you manage? | Task, owner, deadline, outcome, progress and optional checklist | Cause, corrective work, milestones, review schedule and effectiveness |
+| What proves completion? | Delivery evidence and any checklist completion | Milestone evidence, a current Effective review and consecutive Green results |
+| Is approval required? | Department then Strategy | Department then Strategy |
+
+### Deliver a simple action
+
+Create it from an objective, KPI details, Plans & recovery or the global Create menu. For a direct objective action, choose its responsible department; a KPI action inherits the KPI department.
+
+Enter the task, owner, due date, priority and expected outcome. Save, then submit for approval. After final approval, start delivery from **Manage plan**, record progress and complete any checklist items with evidence. Request closure with delivery evidence; both review stages must approve completion. A Green KPI or recovery monitoring review is not required for an action plan.
+
+### Create and submit recovery
+
+All recovery entry points use the same form:
+
+| Entry point | KPI selection |
+| --- | --- |
+| Plans & recovery → Create recovery plan | Choose a current eligible KPI |
+| Global Create → Create recovery plan | Choose a current eligible KPI |
+| Impact & escalation → Create recovery plan | Uses the selected current underperforming KPI |
+| KPI details → Create recovery plan | Uses the selected current underperforming KPI |
+
+Only current published Amber/Red KPIs qualify. Healthy KPIs, missing actuals, drafts and historical details do not initiate recovery. The chooser links any existing open recovery plans; more than one plan may be created.
+
+1. Review the read-only actual/target gap and strategic context.
+2. Confirm the title, accountable owner, deadline, priority and expected outcome.
+3. Enter the root cause, corrective steps and next review date.
+4. Select **Create & submit for approval**.
+
+This creates one Open plan and immediately starts Department review, followed by Strategy review. Corrective steps initialize the first milestone; success criteria, review owner and cadence are prefilled. The creation trigger is retained even if later actuals or targets change. There is no second initial submission step in Manage plan.
+
+Use **Save draft** only when the initial recovery detail is unfinished. It creates no approval request. Complete the missing detail and milestones in Manage plan, then submit. Basic plan details are still required for a draft.
+
+### Manage approved recovery
+
+While review is pending, Manage plan displays the request stage and locks edits/execution. After both approvals:
+
+1. Select **Start recovery**.
+2. Record progress notes and complete milestones with evidence.
+3. Record a monitoring review as **Monitoring**, **Blocked** or **Effective**.
+4. Supply findings/evidence and a future next-review date. A Blocked assessment also needs the blocker/intervention.
+5. When all closure gates are met, provide recovery evidence and select **Verify recovery & close** to request closure approval.
+
+An Effective review requires completed, evidenced milestones and the configured consecutive Green KPI periods, default two. Closure also requires the review to match the current plan/results and not be due for renewal. New results, approved targets, milestone/plan revisions or changed recovery policy can invalidate prior verification.
+
+Changing approved scope, ownership, deadlines, corrective detail or milestone structure creates an amendment request; the approved plan remains active until final approval. Routine progress, milestone completion/evidence and monitoring are audited without another plan-approval cycle.
+
+Closed plans retain their evidence snapshot. Reopening requires a reason and both approvals; recovery then needs fresh effectiveness verification.
+
+## Review and track approvals
+
+Open **Approvals → My review** for decisions assigned by your role and department. Other filters show your submissions, pending requests and completed decisions. Review the proposed/current values and provide a decision note, then approve or return for changes.
+
+Department Approver decides the first stage. Strategy Team decides the second stage. Nobody can approve their own request. If the requester is the department's only approver, an administrator must assign another eligible account. Administrators cannot approve as a substitute.
+
+Returned requests can be revised and resubmitted. Pending requests prevent conflicting changes; stale versions cannot be approved. Deadlines flag overdue work without automatically deciding it.
+
+Execution status and review stage are separate: an **Open** plan may be Draft, awaiting Department/Strategy review or already Approved. Final approval does not start delivery automatically. The board's Recovery verified indicator is Green-period readiness, not confirmation that every closure gate and decision is complete.
+
+## Use AI insights and connected navigation
+
+Try a KPI name/ID, objective, plan title, source name, approval ID, or “How does ITQAN IQ work?”. The guide searches permitted goals, objectives, draft/published KPIs, plans, sources, approvals and audit updates. Results link to the relevant record or screen. The top-bar search uses the same guide.
+
+The guide uses local rules and workspace records. It does not contact an AI model or change data. Follow the goal → objective → KPI → plan path in record drawers, use **Back** to return, and clear linked filters on the registry/plan board to widen your view.
+
+Impact & escalation defaults to **Needs attention**. **All KPIs** also exposes healthy KPI context and simple actions. Escalation roles are advisory; no external message is dispatched.
+
+## Open Administration
+
+Sign out, select **Administrator**, choose **Workspace administrator**, and enter. Administration opens automatically and has sidebar/top-bar shortcuts. The direct route is `#/admin`.
+
+Its ten sections cover Organization, Strategy & objectives, Lists of values, Departments, Users & roles, Performance rules, Approval policy, Plan & recovery defaults, Notifications and Source systems. See [Configuration](CONFIGURATION.md) for supported values and effects.
+
+## Reports, notifications and saved work
+
+CSV export includes published KPIs in the authorized reporting scope. The executive performance pack opens the browser print view; choose Save as PDF in the print dialog if needed. Draft KPIs are excluded from performance exports.
+
+In-app notifications link to eligible decisions, returned submissions, due reviews and configured performance items. The indicator is not a persistent unread counter. Audit trail shows local activity within your role's scope.
+
+A refresh retains saved records and settings in this browser origin. Another profile, host or port has separate data. The reporting calendar is fixed to April–September 2026; it does not roll forward automatically.
+
+## Common situations
+
+| Situation | What to check |
+| --- | --- |
+| Administration is absent | Enter the Administrator demo account |
+| Recovery creation is unavailable | Check current Amber/Red actuals, KPI publication, write permissions and active department/linked filters |
+| New recovery is Open after submission | Open is its execution status; inspect the Department/Strategy review badge |
+| Start or editing is locked | Complete both approvals; resolve any pending request |
+| Effective review/closure is blocked | Check milestones/evidence, Green-period window, current review date and changed plan/results |
+| A source has no live updates | Source settings are catalogue details; ingestion is not connected |
+| Work is missing from a list | Check role scope, department, linked-record and type/status filters |
+| No matching demo account exists | An Administrator can add/activate an account for that role and department |
+
+## Prototype limits
+
+Live identity/UAE PASS, server authorization, shared storage, actuals ingestion, external notifications, connected AI and attachment storage are not implemented. Browser-local scope and approvals demonstrate intended behavior; they are not production security controls. Some Arabic administration/approval copy remains English.
+
+For detailed rules use the [functional specification](FUNCTIONAL_SPECIFICATION.md), for process diagrams use [Workflows](WORKFLOWS.md), and for remaining service work use [Integrations](INTEGRATIONS.md).
