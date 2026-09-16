@@ -28,6 +28,11 @@ let kpis=Data.normalise(saved&&Array.isArray(saved.kpis)?saved.kpis:initialKpis)
 let actions=saved&&Array.isArray(saved.actions)?saved.actions:seedActions.map(a=>({...a}));
 let audit=saved&&Array.isArray(saved.audit)?saved.audit:seedAudit.map(a=>({...a}));
 let page='dashboard',ar=false,periodIndex=Data.latest,department='All departments',filter='All statuses',query='';
+/* Hash routing keeps each view addressable, so a view can be bookmarked or shared, browser
+   Back and Forward move between views, and a refresh returns to where you were. */
+const pages=nav.map(n=>n[0]);
+const pageFromHash=()=>{const id=typeof location==='undefined'?'':String(location.hash||'').replace(/^#\/?/,'');return pages.includes(id)?id:null};
+page=pageFromHash()||page;
 /* Demo sign-in gate. The prototype has no backend, so any well-formed credentials are
    accepted; the flag only decides whether the login page or the workspace shell renders. */
 const AUTH='itqan-auth';
@@ -117,10 +122,19 @@ function chart({values,labels,target,suffix='',caption=''}){
 const brandMark=(size,cls='brand-mark')=>`<img class="${cls}" src="icon.svg" width="${size}" height="${size}" alt="" aria-hidden="true">`;
 
 /* ---------- shell ---------- */
+/* Single entry point for changing view: keeps the hash, the page state and the render in step. */
+function go(next){
+  page=pages.includes(next)?next:'dashboard';
+  if(typeof location!=='undefined')location.hash=`#/${page}`;
+  render();
+}
+
 function render(){
   document.documentElement.lang=ar?'ar':'en';
   document.documentElement.dir=ar?'rtl':'ltr';
-  if(!authenticated)return renderLogin();
+  if(!authenticated){document.title=`${t('Sign in','تسجيل الدخول')} · ITQAN IQ`;return renderLogin()}
+  const view=nav.find(n=>n[0]===page)||nav[0];
+  document.title=`${t(view[1],view[2])} · ITQAN IQ`;
   const openActions=actions.filter(a=>a.status!=='Closed').length;
   $('#app').innerHTML=`<aside class="sidebar"><div class="brand">${brandMark(46)}<div><strong>ITQAN <span>IQ</span></strong><small>INTELLIGENCE IN PERFORMANCE</small></div></div><div class="org"><span class="seal">♜</span><div><strong>CONFIDENTIAL CLIENT</strong><small>${t('United Arab Emirates','الإمارات العربية المتحدة')}</small></div></div><nav>${nav.map(([id,en,a],i)=>`${i===0?`<div class="nav-label">${t('WORKSPACE','مساحة العمل')}</div>`:i===7?`<div class="nav-label">${t('GOVERNANCE','الحوكمة')}</div>`:''}<button class="nav-item ${page===id?'active':''}" data-page="${id}"${page===id?' aria-current="page"':''}><span class="nav-icon" aria-hidden="true">${icons[id]}</span>${t(en,a)}${id==='actions'&&openActions?`<span class="count">${openActions}</span>`:id==='ai'?'<span class="count">IQ</span>':''}</button>`).join('')}</nav><div class="side-bottom"><div class="help-card"><strong>✧ ${t('Clarity. Confidence. Impact.','وضوح. ثقة. أثر.')}</strong><p>${t('Turn performance intelligence into meaningful action.','حوّل ذكاء الأداء إلى إجراءات مؤثرة.')}</p><button data-page="ai">${t('Meet your AI copilot','تعرف على مساعدك الذكي')} ↗</button></div><div class="user"><span class="avatar">AM</span><div><strong>A. Al Mansoori</strong><small>${t('Executive office · Demo','المكتب التنفيذي · تجريبي')}</small></div></div></div></aside><main class="main"><header class="topbar"><div class="breadcrumb">${t('Workspace','مساحة العمل')} / <b>${t(nav.find(n=>n[0]===page)[1],nav.find(n=>n[0]===page)[2])}</b></div><div class="top-actions"><label class="search-box"><span aria-hidden="true">⌕</span><input class="search" id="global-search" placeholder="${t('Search KPIs, owners…','البحث في المؤشرات…')}" aria-label="${t('Search KPIs','البحث في المؤشرات')}"></label><span class="demo">${t('SYNTHETIC DATA','بيانات اصطناعية')}</span><button class="ghost" id="language">${ar?'English':'العربية'}</button><button class="icon-button" id="notifications" aria-label="${t('Notifications','التنبيهات')}">♧${attention()?`<span class="dot" aria-hidden="true"></span>`:''}</button><span class="avatar">AM</span><button class="icon-button" id="sign-out" title="${t('Sign out','تسجيل الخروج')}" aria-label="${t('Sign out','تسجيل الخروج')}">⇥</button></div></header><div class="content">${heading()}${body()}<footer class="footer"><span>ITQAN IQ · ${t('A clear line of sight. A greater impact.','رؤية واضحة. أثر أكبر.')}</span><span>${t('Interactive prototype · Synthetic data','نموذج تفاعلي · بيانات اصطناعية')} · ${period()}</span></footer></div></main>`;
   bind();
@@ -325,7 +339,7 @@ function actionForm(id){
     if(!title||!owner||!effect||!due)return toast(t('Complete every field before creating the action.','أكمل جميع الحقول.'));
     actions.push({id:Date.now(),title,kpi:$('#action-kpi').value,owner,due,effect,status:'Open'});
     persist('Corrective action created: '+title);
-    close();page='actions';render();toast(t('Recovery action created and assigned','تم إنشاء الإجراء'));
+    close();go('actions');toast(t('Recovery action created and assigned','تم إنشاء الإجراء'));
   };
 }
 
@@ -389,15 +403,24 @@ function ask(q){
 }
 
 /* ---------- events ---------- */
+/* On narrow screens the sidebar becomes a horizontal strip, so the selected view is scrolled
+   back into view; otherwise choosing a later item leaves it off-screen with no active marker. */
+function keepActiveNavVisible(){
+  const active=$('.nav-item.active'),strip=active&&active.parentElement;
+  if(!strip||typeof strip.scrollWidth!=='number'||strip.scrollWidth<=strip.clientWidth)return;
+  strip.scrollLeft=Math.max(0,active.offsetLeft-(strip.clientWidth-active.offsetWidth)/2);
+}
+
 function bindKpis(){document.querySelectorAll('[data-kpi]').forEach(el=>{el.onclick=()=>detail(el.dataset.kpi);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();detail(el.dataset.kpi)}}})}
 
 function bind(){
-  document.querySelectorAll('[data-page]').forEach(el=>el.onclick=()=>{page=el.dataset.page;render()});
-  if($('#sign-out'))$('#sign-out').onclick=()=>{authenticated=false;localStorage.removeItem(AUTH);page='dashboard';render()};
+  document.querySelectorAll('[data-page]').forEach(el=>el.onclick=()=>go(el.dataset.page));
+  keepActiveNavVisible();
+  if($('#sign-out'))$('#sign-out').onclick=()=>{authenticated=false;localStorage.removeItem(AUTH);go('dashboard')};
   bindKpis();
-  document.querySelectorAll('[data-goal]').forEach(el=>{el.onclick=()=>{page='strategy';render()};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}}});
+  document.querySelectorAll('[data-goal]').forEach(el=>{el.onclick=()=>go('strategy');el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}}});
   $('#language').onclick=()=>{ar=!ar;render()};
-  $('#global-search').onkeydown=e=>{if(e.key==='Enter'){query=e.target.value;filter='All statuses';page='kpi';render()}};
+  $('#global-search').onkeydown=e=>{if(e.key==='Enter'){query=e.target.value;filter='All statuses';go('kpi')}};
   $('#notifications').onclick=notifications;
   if($('#period'))$('#period').onchange=e=>{periodIndex=Number(e.target.value);render()};
   if($('#department'))$('#department').onchange=e=>{department=e.target.value;render()};
@@ -420,7 +443,7 @@ function bind(){
   document.querySelectorAll('[data-ask]').forEach(el=>el.onclick=()=>ask(el.textContent));
   document.querySelectorAll('[data-report]').forEach(el=>el.onclick=()=>{
     if(el.dataset.report==='csv')csv();
-    else if(el.dataset.report==='print'){page='dashboard';render();window.print()}
+    else if(el.dataset.report==='print'){go('dashboard');window.print()}
     else $('#report-output').innerHTML=comparison();
   });
   if($('#settings'))$('#settings').onsubmit=e=>{e.preventDefault();localStorage.setItem('itqan-cadence',$('#cadence').value);persist('Review cadence preference updated');toast(t('Review cadence preference saved locally','تم حفظ التفضيل'))};
@@ -443,4 +466,13 @@ document.addEventListener('keydown',e=>{
     else if(!e.shiftKey&&document.activeElement===focus[focus.length-1]){e.preventDefault();focus[0].focus()}
   }
 });
+
+/* Back and Forward move between views rather than leaving the application. go() already
+   rendered for in-app navigation, so only an externally changed hash needs a render here. */
+if(typeof window!=='undefined'&&window.addEventListener)window.addEventListener('hashchange',()=>{
+  const next=pageFromHash();
+  if(next&&next!==page){page=next;render()}
+  else if(!next)go(page);
+});
+if(typeof location!=='undefined'&&!pageFromHash())location.hash=`#/${page}`;
 render();
