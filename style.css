@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Montserrat:wght@400;500;600&display=swap');
 
 /* ---------- tokens ---------- */
 :root{
@@ -19,8 +19,11 @@
   --gold:#8a6d2a;
   /* Brand-only tokens. RAG status, charts and the rest of the interface keep their own
      accessible palette so flag red is never mistaken for an Off track signal. */
-  --uae-red:#ce1126;
-  --uae-black:#000;
+  /* ITQAN IQ brand tokens. RAG status, charts and the rest of the interface keep their own
+     accessible palette so brand teal is never mistaken for a performance signal. */
+  --brand-ink:#0f2a3a;
+  --brand-teal:#17a398;
+  --brand-face:'Montserrat','Segoe UI',Tahoma,Arial,sans-serif;
   --sans:'DM Sans','Segoe UI',Tahoma,Arial,sans-serif;
   --display:'Manrope','Segoe UI',Tahoma,Arial,sans-serif;
   --radius:12px;
@@ -76,9 +79,9 @@ svg{vertical-align:middle}
 .login-page{min-height:100vh;display:grid;grid-template-columns:minmax(360px,520px) minmax(360px,1fr);background:#f4f6f2}
 .login-card{width:min(100%,430px);align-self:center;justify-self:center;padding:40px 28px}
 .login-brand{display:flex;align-items:center;gap:13px;margin-bottom:68px}
-.login-brand strong{font-family:var(--display);font-size:25px;font-weight:800;letter-spacing:-.7px;color:var(--uae-black)}
-.login-brand strong span{color:var(--uae-red)}
-.login-brand small{display:block;font-size:10.5px;font-weight:600;letter-spacing:1.4px;color:var(--muted);margin-top:3px}
+.login-brand strong{font-family:var(--brand-face);font-size:21px;font-weight:500;letter-spacing:.2em;color:var(--brand-ink)}
+.login-brand strong span{color:var(--brand-teal);font-weight:600}
+.login-brand small{display:block;font-family:var(--brand-face);font-size:8.5px;font-weight:400;letter-spacing:.22em;color:var(--muted);margin-top:5px}
 .login-copy h1{font-size:34px;margin:9px 0 8px}
 .login-copy p{color:var(--muted);margin-bottom:28px}
 .login-form{display:grid;gap:16px}
@@ -88,7 +91,7 @@ svg{vertical-align:middle}
 .login-sso{width:100%;background:#fff}
 .login-error{min-height:21px;color:var(--red);font-size:13px}
 .login-note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:22px}
-.login-aside{background:#173f34;color:#fff;padding:clamp(40px,8vw,120px);display:flex;flex-direction:column;justify-content:center}
+.login-aside{background:var(--brand-ink);color:#fff;padding:clamp(40px,8vw,120px);display:flex;flex-direction:column;justify-content:center}
 .login-aside-mark{margin-bottom:58px}
 .login-aside .eyebrow{color:#c9d5c9}
 .login-aside h2{color:#fff;font-size:clamp(28px,3.5vw,48px);line-height:1.15;max-width:12ch;margin:16px 0}
@@ -103,9 +106,9 @@ svg{vertical-align:middle}
 }
 .brand{display:flex;align-items:center;gap:12px;padding:0 8px}
 .brand-mark{flex:none;border-radius:13px;display:block}
-.brand strong{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.7px;color:var(--uae-black)}
-.brand strong span{color:var(--uae-red)}
-.brand small{display:block;font-size:10.5px;font-weight:600;letter-spacing:1.4px;color:var(--muted);margin-top:3px}
+.brand strong{font-family:var(--brand-face);font-size:18px;font-weight:500;letter-spacing:.2em;color:var(--brand-ink);white-space:nowrap}
+.brand strong span{color:var(--brand-teal);font-weight:600}
+.brand small{display:block;font-family:var(--brand-face);font-size:7px;font-weight:400;letter-spacing:.12em;color:var(--muted);margin-top:5px;white-space:nowrap}
 .org{
   margin:22px 8px 16px;border-top:1px solid var(--line);padding-top:18px;
   display:flex;gap:11px;align-items:center;
