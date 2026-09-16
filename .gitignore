@@ -1,5 +1,15 @@
 node_modules/
 
-# Client functional specification is classified OFFICIAL - Internal.
-# It is deliberately excluded from this public repository.
-Docs/
+# Original client material remains excluded. These authored Markdown files
+# describe this synthetic prototype and are safe to keep with its source.
+/docs/*
+!/docs/README.md
+!/docs/ARCHITECTURE.md
+!/docs/CONFIGURATION.md
+!/docs/DEVELOPMENT.md
+!/docs/FUNCTIONAL_SPECIFICATION.md
+!/docs/INTEGRATIONS.md
+!/docs/LOGIN.md
+!/docs/USER_GUIDE.md
+!/docs/WORKFLOWS.md
+!/docs/WORKSPACE_FLOWS.md

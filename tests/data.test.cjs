@@ -3,10 +3,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const Data = require('../data.js');
+const Data = require('../src/domain/performance.js');
 
 // Read the actual prototype seed without evaluating browser code or retaining state.
-const source = fs.readFileSync(path.join(__dirname, '../app.js'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '../src/app.js'), 'utf8');
 const seedStart = source.indexOf('const initialKpis=');
 assert.ok(seedStart >= 0, 'app.js declares its synthetic KPI seed');
 const seedOpen = source.indexOf('[', seedStart);
@@ -29,6 +29,13 @@ for (let i = seedOpen; i < source.length; i++) {
 assert.ok(seedEnd > seedOpen, 'the synthetic KPI array is complete');
 const rawSeed = JSON.parse(JSON.stringify(vm.runInNewContext(source.slice(seedOpen, seedEnd))));
 const freshSeed = () => Data.normalise(structuredClone(rawSeed));
+test('multiple objectives roll up equally within a strategic goal without over-weighting that goal',()=>{
+  Data.configure({green:95,amber:85,objectiveParents:['SG-A','SG-A','SG-B']});
+  try{
+    const rows=[{goal:0,actual:100,target:100,amber:80,unit:'%',direction:'higher'},{goal:1,actual:50,target:100,amber:80,unit:'%',direction:'higher'},{goal:2,actual:100,target:100,amber:80,unit:'%',direction:'higher'}];
+    assert.equal(Data.overall(rows),87.5);assert.equal(Data.summary(rows).goals,2);
+  }finally{Data.configure({green:95,amber:85,objectiveParents:[]})}
+});
 const approximate = (actual, expected) => assert.ok(
   Math.abs(actual - expected) < 1e-10,
   `expected ${expected}, received ${actual}`,
