@@ -1,6 +1,7 @@
 ﻿const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const elements=new Map();const element=s=>{if(!elements.has(s))elements.set(s,{innerHTML:'',style:{},value:'',focus(){},querySelectorAll(){return[]}});return elements.get(s)};
-const storage=new Map();const context=vm.createContext({document:{querySelector:element,querySelectorAll:()=>[],documentElement:{},addEventListener(){}},localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},setTimeout(){},Date,console});
+const storage=new Map();const context=vm.createContext({document:{querySelector:element,querySelectorAll:()=>[],documentElement:{},addEventListener(){}},localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},setTimeout(){},Date,console});
+storage.set('itqan-auth','true');
 vm.runInContext(fs.readFileSync('data.js','utf8'),context);
 vm.runInContext(fs.readFileSync('app.js','utf8'),context);
 vm.runInContext(`

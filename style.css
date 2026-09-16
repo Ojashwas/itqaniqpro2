@@ -75,6 +75,29 @@ svg{vertical-align:middle}
 
 #app{min-height:100vh}
 
+/* ---------- login ---------- */
+.login-page{min-height:100vh;display:grid;grid-template-columns:minmax(360px,520px) minmax(360px,1fr);background:#f4f6f2}
+.login-card{width:min(100%,430px);align-self:center;justify-self:center;padding:40px 28px}
+.login-brand{display:flex;align-items:center;gap:13px;margin-bottom:68px}
+.login-brand strong{font-family:var(--display);font-size:25px;font-weight:800;letter-spacing:-.7px;color:var(--uae-black)}
+.login-brand strong span{color:var(--uae-red)}
+.login-brand small{display:block;font-size:10.5px;font-weight:600;letter-spacing:1.4px;color:var(--muted);margin-top:3px}
+.login-copy h1{font-size:34px;margin:9px 0 8px}
+.login-copy p{color:var(--muted);margin-bottom:28px}
+.login-form{display:grid;gap:16px}
+.login-form .field{gap:6px}
+.login-form .field span{font-size:13px;font-weight:600}
+.login-submit{width:100%;display:flex;justify-content:center;gap:10px;padding:12px 15px}
+.login-sso{width:100%;background:#fff}
+.login-error{min-height:21px;color:var(--red);font-size:13px}
+.login-note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:22px}
+.login-aside{background:#173f34;color:#fff;padding:clamp(40px,8vw,120px);display:flex;flex-direction:column;justify-content:center}
+.login-aside-mark{margin-bottom:58px}
+.login-aside .eyebrow{color:#c9d5c9}
+.login-aside h2{color:#fff;font-size:clamp(28px,3.5vw,48px);line-height:1.15;max-width:12ch;margin:16px 0}
+.login-aside>p:not(.eyebrow){color:#d5e0d8;max-width:44ch;line-height:1.75}
+.login-aside .demo{align-self:flex-start;margin-top:28px;color:#e7d8a8;background:#ffffff12;border-color:#ffffff38}
+
 /* ---------- sidebar ---------- */
 .sidebar{
   position:fixed;inset:0 auto 0 0;width:272px;background:#fff;
@@ -414,6 +437,11 @@ tr.clickable:hover{background:#f8faf7}
 }
 @media(max-width:760px){
   body{font-size:14.5px}
+  .login-page{display:block}
+  .login-card{padding:32px 24px 44px}
+  .login-brand{margin-bottom:48px}
+  .login-aside{padding:44px 24px;min-height:360px}
+  .login-aside-mark{margin-bottom:32px}
   .sidebar{position:static;width:100%;padding:14px}
   .org,.nav-label,.side-bottom{display:none}
   .sidebar nav{display:flex;overflow-x:auto;gap:6px}
