@@ -3,7 +3,6 @@
 /* ---------- tokens ---------- */
 :root{
   --bg:#f4f6f2;
-  --paper:#fff;
   --ink:#1b322b;
   --ink-soft:#3a4d46;
   --muted:#586761;
@@ -18,11 +17,9 @@
   --neutral:#4f5d57;
   --neutral-soft:#eceee9;
   --gold:#8a6d2a;
-  --gold-bright:#c9ab68;
-  /* UAE flag palette — reserved for the ITQAN IQ brand lockup, not for data. */
-  --uae-green:#00732f;
+  /* Brand-only tokens. RAG status, charts and the rest of the interface keep their own
+     accessible palette so flag red is never mistaken for an Off track signal. */
   --uae-red:#ce1126;
-  --uae-white:#fff;
   --uae-black:#000;
   --sans:'DM Sans','Segoe UI',Tahoma,Arial,sans-serif;
   --display:'Manrope','Segoe UI',Tahoma,Arial,sans-serif;
