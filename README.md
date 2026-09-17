@@ -66,4 +66,4 @@ AI insights searches the scoped workspace and explains navigation using local ru
 
 The account picker and department restrictions simulate assigned roles. Records and configuration persist in browser localStorage. Live authentication, server-side authorization, a database, source-system actuals ingestion, outbound notifications and a connected AI service remain unimplemented. Actuals have no manual-entry UI; users register KPIs and set targets.
 
-The maintained Markdown files, supplied design images and [business functional specification v1.3](docs/ITQAN_IQ_Business_Functional_Specification_v1.3.docx) are tracked. The supplied specification is a Word document and uses its correct `.docx` extension. New documentation is visible to Git without a folder-wide ignore rule. `docs/` is the canonical documentation folder; there is no maintained `doc/` copy.
+The maintained Markdown documentation in `docs/` is tracked. New documentation is visible to Git without a folder-wide ignore rule. `docs/` is the canonical documentation folder; there is no maintained `doc/` copy.
