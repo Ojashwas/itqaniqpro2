@@ -32,6 +32,8 @@ For installation and the directory tree, see the [project README](../README.md).
 
 ## Supplied design references
 
+The [business functional specification v1.3](ITQAN_IQ_Business_Functional_Specification_v1.3.docx) is included as a supplied Word reference. Its content is preserved; the extension is `.docx` because the file is a Word package, not Markdown. The maintained [functional specification](FUNCTIONAL_SPECIFICATION.md) documents the current implemented application and its production gaps.
+
 | File | Reference |
 | --- | --- |
 | [Designer (46).png](Designer%20%2846%29.png) | ITQAN IQ brand concepts |
@@ -45,4 +47,4 @@ These supplied images are design/process references, not screenshots or an exact
 
 Update the relevant specification requirements, acceptance scenarios and task guides whenever application behavior changes. Keep implemented behavior, proposed contracts and open decisions distinct. Current verification evidence is recorded in the [development guide](DEVELOPMENT.md#verification).
 
-The Markdown guides and four supplied design images are tracked. The folder-wide ignore rule has been removed so new documentation is visible to Git. `ITQAN_IQ_Business_Functional_Specification_v1.3` is a source Word document marked Confidential / INTERNAL and remains explicitly ignored pending confirmation to publish it in this public repository.
+The Markdown guides, four supplied design images and supplied Word specification are tracked. There are no documentation exclusions in `.gitignore`; new documentation is visible in normal Git status.
