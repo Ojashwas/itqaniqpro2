@@ -30,8 +30,19 @@ For installation and the directory tree, see the [project README](../README.md).
 - AI insights is a local search/navigation guide. Identity, source ingestion, a shared backend and a connected AI model are not implemented.
 - The login has UAE flag colors, the visible **Intelligence in Performance.** headline, four role cards, Login ID/password and UAE PASS.
 
+## Supplied design references
+
+| File | Reference |
+| --- | --- |
+| [Designer (46).png](Designer%20%2846%29.png) | ITQAN IQ brand concepts |
+| [Designer (49).png](Designer%20%2849%29.png) | Strategy-to-outcome process overview |
+| [Designer (50).png](Designer%20%2850%29.png) | KPI-on-target scenario |
+| [Designer (51).png](Designer%20%2851%29.png) | KPI-misses-target scenario |
+
+These supplied images are design/process references, not screenshots or an exact specification of implemented behavior. They include proposed source ingestion and simplified plan flows. The current distinction between action and recovery plans, approval gates and integration status is defined in the [functional specification](FUNCTIONAL_SPECIFICATION.md) and [workflows](WORKFLOWS.md).
+
 ## Maintenance
 
 Update the relevant specification requirements, acceptance scenarios and task guides whenever application behavior changes. Keep implemented behavior, proposed contracts and open decisions distinct. Current verification evidence is recorded in the [development guide](DEVELOPMENT.md#verification).
 
-These authored Markdown files are tracked through the explicit `.gitignore` allowlist. Original client documents, credentials and real client records are not part of this documentation set.
+The Markdown guides and four supplied design images are tracked. The folder-wide ignore rule has been removed so new documentation is visible to Git. `ITQAN_IQ_Business_Functional_Specification_v1.3` is a source Word document marked Confidential / INTERNAL and remains explicitly ignored pending confirmation to publish it in this public repository.

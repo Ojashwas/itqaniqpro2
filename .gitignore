@@ -1,15 +1,5 @@
 node_modules/
 
-# Original client material remains excluded. These authored Markdown files
-# describe this synthetic prototype and are safe to keep with its source.
-/docs/*
-!/docs/README.md
-!/docs/ARCHITECTURE.md
-!/docs/CONFIGURATION.md
-!/docs/DEVELOPMENT.md
-!/docs/FUNCTIONAL_SPECIFICATION.md
-!/docs/INTEGRATIONS.md
-!/docs/LOGIN.md
-!/docs/USER_GUIDE.md
-!/docs/WORKFLOWS.md
-!/docs/WORKSPACE_FLOWS.md
+# This source Word document is marked Confidential / INTERNAL.
+# Keep it local until public publication is explicitly confirmed.
+/docs/ITQAN_IQ_Business_Functional_Specification_v1.3

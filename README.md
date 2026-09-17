@@ -66,4 +66,4 @@ AI insights searches the scoped workspace and explains navigation using local ru
 
 The account picker and department restrictions simulate assigned roles. Records and configuration persist in browser localStorage. Live authentication, server-side authorization, a database, source-system actuals ingestion, outbound notifications and a connected AI service remain unimplemented. Actuals have no manual-entry UI; users register KPIs and set targets.
 
-The maintained Markdown files in `docs/` are explicitly tracked. Private client specifications and other unlisted material in that directory remain excluded by `.gitignore`. `docs/` is the canonical documentation folder; there is no maintained `doc/` copy.
+The maintained Markdown files and supplied design images in `docs/` are tracked. The confidential source Word specification is explicitly excluded pending confirmation to publish it in this public repository. New documentation is no longer hidden by a folder-wide ignore rule. `docs/` is the canonical documentation folder; there is no maintained `doc/` copy.

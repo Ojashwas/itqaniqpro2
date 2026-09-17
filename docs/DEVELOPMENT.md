@@ -56,7 +56,7 @@ Keep calculations in the shared engine rather than duplicating them in views. Ro
 
 Application data persists per browser origin. A different hostname or port uses a different local workspace. Reorganizing files preserves the storage keys and public URLs. Use a separate browser profile for a clean demonstration without deleting existing work. Do not reset the shared browser workspace as part of a routine test run.
 
-`node_modules/` is ignored. `.gitignore` excludes `/docs/*` and explicitly allows the ten maintained project Markdown files. These Markdown files are tracked; original client material and unlisted files remain excluded. New project documentation needs an explicit allowlist entry and a link in [the documentation index](README.md). `docs/` is the maintained directory, not `doc/`.
+`node_modules/` is ignored. Project Markdown and supplied design images are tracked; `docs/` has no folder-wide ignore rule. The source Word file `docs/ITQAN_IQ_Business_Functional_Specification_v1.3`, marked Confidential / INTERNAL, remains explicitly excluded pending confirmation to publish it in the public repository. New project documentation appears in normal Git status and should be linked from [the documentation index](README.md). `docs/` is the maintained directory, not `doc/`.
 
 Do not commit confidential source documents, real user records or credentials. Integration setup belongs in a future backend/secret store, not the frontend configuration forms.
 
