@@ -12,7 +12,7 @@
 | Source actuals | Synthetic history, source catalogue, metric keys and read-only Data flows | Authenticated ingestion, validation, corrections, freshness and reconciliation |
 | KPI and plan approvals | Local snapshots, two stages, versions and decision history | Shared durable storage, transactions and concurrent-user protection |
 | Notifications/escalation | Computed in-app items and advisory escalation roles | Optional external delivery, recipients, retries and delivery tracking |
-| AI insights | Deterministic workspace search and application help | Optional connected model/retrieval service with the same access scope |
+| Ask IQ | Deterministic workspace search and application help | Optional connected model/retrieval service with the same access scope |
 | Evidence/audit | Text evidence, closure snapshots and local activity | Durable evidence storage, retention, provenance and audit controls |
 
 The Node server serves only allowlisted static assets. There are no authentication, observation-ingestion, approval or AI endpoints.

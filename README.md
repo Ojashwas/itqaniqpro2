@@ -43,7 +43,7 @@ ITQAN IQ/
 | --- | --- |
 | `npm start` / `npm run dev` | Serve the app at localhost:5180 |
 | `npm run check` | Check application, engine, server and smoke-script syntax |
-| `npm test` | Run all 51 tests and the eleven-view smoke check |
+| `npm test` | Run all 60 tests and the eleven-view smoke check |
 | `npm run test:unit` | Run calculation, UI/workflow and HTTP tests |
 | `npm run test:smoke` | Run the view smoke check |
 
@@ -60,7 +60,7 @@ Start with the [documentation index](docs/README.md). The [functional specificat
 5. Recovery uses one form from every entry point. **Create & submit for approval** starts the review cycle immediately; **Save draft** is an explicit alternative.
 6. After both approvals, **Manage plan** supports delivery, evidence and monitoring. Closure follows approval; recovery also requires a current Effective review and sustained Green results.
 
-AI insights searches the scoped workspace and explains navigation using local rules. Administrator accounts open the ten-section Administration screen automatically. The UAE-themed login retains visible role selection, Login ID/password and UAE PASS.
+Ask IQ searches the scoped workspace and explains navigation using local rules. Administrator accounts open the ten-section Administration screen automatically. The UAE-themed login retains visible role selection, Login ID/password and UAE PASS.
 
 ## Current scope
 

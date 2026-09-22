@@ -70,7 +70,7 @@ Plan types, execution statuses, approval stages, roles, measurement directions a
 | New-plan deadline | 14 days from creation | 1–365 whole days |
 | Notification categories | All enabled | Independently enabled/disabled |
 | Default language | English | English or Arabic |
-| Default landing page | Executive overview | Overview, Strategy, AI insights or KPI registry |
+| Default landing page | Executive overview | Overview, Strategy, Ask IQ or KPI registry |
 
 Aggregate scoring policy does not replace an individual KPI's target/Amber pair. The fixed calculation weights are equal KPIs within an objective, equal measured objectives within a strategic goal and equal measured strategic goals overall.
 

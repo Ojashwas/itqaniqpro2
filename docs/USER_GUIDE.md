@@ -32,7 +32,7 @@ Sign out from the top bar to change demo accounts. Sign-out preserves workspace 
 | Strategy & objectives | Goals, their objectives, linked KPIs and direct objective actions |
 | KPI registry | **Register KPI**, edit drafts, propose published-definition changes and set current targets |
 | Data flows | Read source-attributed actuals, source metric keys, confidence and expected refresh |
-| AI insights | Search the permitted workspace and get explanations with navigation links |
+| Ask IQ | Search the permitted workspace and get explanations with navigation links |
 | Impact & escalation | Understand KPI gaps, advisory escalation, recent updates and linked plans |
 | Plans & recovery | Create plans; manage Open, In progress and Closed work |
 | Reports & analytics | Published-KPI CSV export, department comparisons and a print view |
@@ -143,7 +143,7 @@ Returned requests can be revised and resubmitted. Pending requests prevent confl
 
 Execution status and review stage are separate: an **Open** plan may be Draft, awaiting Department/Strategy review or already Approved. Final approval does not start delivery automatically. The board's Recovery verified indicator is Green-period readiness, not confirmation that every closure gate and decision is complete.
 
-## Use AI insights and connected navigation
+## Use Ask IQ and connected navigation
 
 Try a KPI name/ID, objective, plan title, source name, approval ID, or “How does ITQAN IQ work?”. The guide searches permitted goals, objectives, draft/published KPIs, plans, sources, approvals and audit updates. Results link to the relevant record or screen. The top-bar search uses the same guide.
 

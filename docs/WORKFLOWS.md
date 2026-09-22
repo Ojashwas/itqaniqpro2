@@ -124,4 +124,4 @@ Reopening requires a reason and both approvals. It returns the plan to In progre
 
 Analytical reporting periods appear only on overview, strategy, data flows, impact and reports. Operational workflows use the latest sample month, September 2026. Recovery creation deliberately switches to current results; deadlines and reviews use real calendar dates.
 
-AI insights and top-bar search navigate authorized records and explain these workflows using local rules. Escalation classifications and notifications remain advisory/in-app; they do not dispatch external messages. [Integration requirements](INTEGRATIONS.md) describes the services needed for production.
+Ask IQ and top-bar search navigate authorized records and explain these workflows using local rules. Escalation classifications and notifications remain advisory/in-app; they do not dispatch external messages. [Integration requirements](INTEGRATIONS.md) describes the services needed for production.

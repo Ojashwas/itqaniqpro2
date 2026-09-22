@@ -10,7 +10,7 @@
 | Strategy & objectives | Maintain the strategic hierarchy and explore its relationships | Create strategic goal; create objectives beneath a goal; register an objective's KPI; create an objective action |
 | KPI registry | Register measures, set targets and propose enhancements | Register KPI; edit a draft; propose definition, formula, source-key or objective changes; submit targets |
 | Data flows | Explain how source applications map to KPI actuals | Review source, metric key, actual, confidence and expected refresh; open mapped KPI |
-| AI insights | Search authorized workspace records and explain the application | Find goals, objectives, KPIs including drafts, plans, sources, approvals and audit updates; follow result links; ask for help |
+| Ask IQ | Search authorized workspace records and explain the application | Find goals, objectives, KPIs including drafts, plans, sources, approvals and audit updates; follow result links; ask for help |
 | Impact & escalation | Explain KPI gaps, trends, strategic impact and escalation | Switch between Needs attention and All KPIs; view linked updates/approvals; create KPI action or eligible recovery |
 | Plans & recovery | Create and manage delivery and recovery | Create action plan; create recovery plan; filter type and status; use Open, In progress and Closed cards |
 | Approvals | Govern KPI and plan changes | Review submitted/current values; approve or return with notes; track Department then Strategy review |
@@ -18,7 +18,7 @@
 | Reports & analytics | Share the authorized published performance view | Export CSV, compare departments or open the executive print view |
 | Audit trail | Review recorded local activity | Inspect events, actors and timestamps within role scope |
 
-The top-bar search opens AI insights and uses the same scoped search. It does not change business data. AI insights is currently a local search and guide; a connected language-model service is not configured.
+The top-bar search opens Ask IQ and uses the same scoped search. It does not change business data. Ask IQ is currently a local search and guide; a connected language-model service is not configured.
 
 Reporting-period selection belongs only to overview, strategy, data flows, impact and reports. KPI setup, plans and AI guidance use September 2026, the latest sample measurement period. Administration, approvals and audit have no reporting-period selector. Deadlines and monitoring dates follow the real calendar.
 

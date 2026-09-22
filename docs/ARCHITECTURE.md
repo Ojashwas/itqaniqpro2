@@ -89,6 +89,6 @@ Recovery effectiveness is tied to the plan revision, current observations/thresh
 
 ## Production boundary
 
-The static server does not authenticate accounts or enforce departmental access. UI guards demonstrate intended permissions, but every local record can be inspected or edited through the browser. Credential/UAE PASS controls are connection previews, AI insights uses local rules, and notifications are computed in-app.
+The static server does not authenticate accounts or enforce departmental access. UI guards demonstrate intended permissions, but every local record can be inspected or edited through the browser. Credential/UAE PASS controls are connection previews, Ask IQ uses local rules, and notifications are computed in-app.
 
 Production requires verified identity, scoped APIs, transactional approvals, durable storage/audit and source ingestion. See [Integrations](INTEGRATIONS.md) for the proposed contracts and [Development](DEVELOPMENT.md) for checks and change placement.

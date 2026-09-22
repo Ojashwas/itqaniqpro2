@@ -8,6 +8,7 @@
 
 | Document | Audience and contents |
 | --- | --- |
+| [Data consistency and object relationships](DATA_CONSISTENCY.md) | Object links, shared calculations, sample totals, integrity checks and preservation of saved records |
 | [Functional specification](FUNCTIONAL_SPECIFICATION.md) | Business owners and testers: detailed screen requirements, permissions, fields, validations, calculations and acceptance scenarios |
 | [User guide](USER_GUIDE.md) | End users: sign-in, strategic setup, KPI registration, approvals, action delivery and recovery monitoring |
 | [Connected workspace](WORKSPACE_FLOWS.md) | Product/design teams: screen responsibilities, record links, shared recovery entry points and configurable lists |
@@ -27,7 +28,7 @@ For installation and the directory tree, see the [project README](../README.md).
 - Recovery creation is available only for current published Amber/Red KPIs. Every entry point uses the same form and **Create & submit for approval** action; unfinished work can use **Save draft**.
 - **Manage plan** permits execution after approval. Structural amendments, closure and reopening require approval; routine progress/evidence and monitoring are audited.
 - Department roles see their department; Strategy Team sees all departments. Administrator manages shared configuration and cannot bypass business approval.
-- AI insights is a local search/navigation guide. Identity, source ingestion, a shared backend and a connected AI model are not implemented.
+- Ask IQ is a local search/navigation guide. Identity, source ingestion, a shared backend and a connected AI model are not implemented.
 - The login has UAE flag colors, the visible **Intelligence in Performance.** headline, four role cards, Login ID/password and UAE PASS.
 
 ## Maintenance

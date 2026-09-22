@@ -179,7 +179,7 @@ The login screen presents an always-visible “Choose your role” panel alongsi
 | Strategy & objectives | `#/strategy` | Yes | Explore goals, objectives, measures and linked plans |
 | KPI registry | `#/kpi` | No | Register KPI, inspect definitions and propose current targets |
 | Data flows | `#/data` | Yes | Read source-attributed observations |
-| AI insights | `#/ai` | No | Find records and navigate to useful work |
+| Ask IQ | `#/ai` | No | Find records and navigate to useful work |
 | Impact & escalation | `#/impact` | Yes | Understand breaches and escalation routes |
 | Plans & recovery | `#/actions` | No | Current delivery, approvals, monitoring and recovery |
 | Reports & analytics | `#/reports` | Yes | Print, export and compare |
@@ -276,7 +276,7 @@ Detailed registration and target rules appear in Section 6.
 
 **DAT-05:** KPI details and source search results can open Data flows with a source filter. The filter applies to both source cards and incoming rows; Show all sources clears it. If a source metric key is absent, display the KPI ID as the mapping fallback. A configured source with no published scoped KPI has no incoming-results card yet.
 
-### 5.5 AI insights / workspace guide
+### 5.5 Ask IQ / workspace guide
 
 **AIG-01:** Present a simple question/search field, prompt suggestions and shortcuts for objectives, targets, incoming actuals and recovery.
 
@@ -655,7 +655,7 @@ The last `N` consecutive reporting observations of a published KPI must all be v
 | Organization name | CONFIDENTIAL CLIENT | Required, UI limit 100; updates workspace identity |
 | Strategy/framework label | CLIENT PERFORMANCE · STRATEGY 2026–2031 | Required, UI limit 100; updates shared page heading |
 | Default language | English | English or Arabic; applied at next sign-in |
-| Default landing page | Executive overview | Overview, Strategy, AI insights or KPI registry; admins always land in Administration |
+| Default landing page | Executive overview | Overview, Strategy, Ask IQ or KPI registry; admins always land in Administration |
 
 The framework label is descriptive. Changing its years does not change the sample reporting calendar or every fixed date annotation.
 
@@ -890,7 +890,7 @@ UI text entered into rendered record fields must be displayed as content, not ex
 | UAT-31 | Save source owner/cadence | Data flows shows values and still identifies live connection as unconfigured | DAT-02/03 |
 | UAT-32 | Change analytical period then open registry/plans | Historical analytical context retained for analytics; workflows use latest period | NAV-06, TGT-01 |
 | UAT-33 | Export scoped CSV and preview executive pack | Published scoped fields download; browser print view opens | RPT-01/04 |
-| UAT-34 | Ask about targets, actuals or recovery in AI insights | Relevant explanation and navigation; no record mutation | AIG-01/05 |
+| UAT-34 | Ask about targets, actuals or recovery in Ask IQ | Relevant explanation and navigation; no record mutation | AIG-01/05 |
 | UAT-35 | Refresh after saved changes | Saved settings/records persist for the same browser origin | Section 14.2 |
 | UAT-36 | Submit sample credentials or choose UAE PASS | Unavailable-connection feedback; no authenticated session or stored password; credential submission clears the password | AUTH-01/02 |
 | UAT-37 | Switch login language, toggle password visibility and open demo access on mobile | Correct RTL/visibility states; assigned demo roles remain reachable without credentials | AUTH-03/04 |
